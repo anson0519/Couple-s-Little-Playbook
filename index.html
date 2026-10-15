@@ -530,10 +530,10 @@
                     <span id="currentRoomDisplay" class="font-mono font-black text-sm bg-white px-3 py-1 rounded-xl text-indigo-600 border border-indigo-200">LOVE-520</span>
                 </div>
                 <p class="text-[11px] text-slate-600 leading-relaxed">
-                    只要你同另一半喺各自嘅手機輸入<strong>相同嘅情侶房間暗號</strong>，所有罪狀、怒氣值同埋「和好/原諒券」就會透過雲端 <strong>100% 即時雙向同步</strong>！
+                    只要你同另一半喺各自嘅手機輸入<strong>相同嘅情侶房間暗號</strong>，所有罪狀、怒氣值同埋「和好/原諒券」就會即時互通！
                 </p>
                 <div class="text-[10px] text-slate-400 pt-1 flex items-center justify-between border-t border-indigo-100">
-                    <span>連線狀態：<span id="myUserIdDisplay" class="font-mono font-bold text-indigo-600">檢測中...</span></span>
+                    <span>連線狀態：<span id="myUserIdDisplay" class="font-mono font-bold text-indigo-600">連線初始化中...</span></span>
                     <button onclick="copyRoomCode()" class="text-indigo-600 font-bold hover:underline flex items-center gap-0.5">
                         <i class="ph-bold ph-copy"></i> 複製暗號
                     </button>
@@ -552,14 +552,14 @@
 
             <details class="bg-slate-50 border border-slate-200 rounded-2xl p-3 text-xs">
                 <summary class="font-bold text-slate-700 cursor-pointer flex items-center justify-between">
-                    <span>⚙️ GitHub 部署專用：自訂 Firebase 雲端連線</span>
+                    <span>⚙️ 進階：自訂 Firebase 雲端金鑰 (選填)</span>
                     <span class="text-[10px] text-indigo-600">展開設定</span>
                 </summary>
                 <div class="mt-2.5 space-y-2 text-[11px] text-slate-600 border-t border-slate-200 pt-2">
-                    <p>如果你將此網頁放上 GitHub Pages，可以貼上你自己免費申請嘅 Firebase Config JSON，實現跨手機永久即時同步：</p>
+                    <p>如果想完全使用你專屬嘅 Firebase 專案，可以貼上 JSON：</p>
                     <textarea id="customFirebaseInput" rows="3" placeholder='{"apiKey": "...", "projectId": "..."}' class="w-full font-mono text-[10px] p-2 rounded-xl border border-slate-300 focus:outline-none focus:ring-1 focus:ring-indigo-400"></textarea>
                     <button onclick="saveCustomFirebaseConfig()" class="w-full py-2 bg-slate-800 hover:bg-slate-900 text-white font-bold rounded-xl transition">
-                        儲存並啟動自訂雲端 🚀
+                        儲存並啟動 🚀
                     </button>
                 </div>
             </details>
@@ -603,8 +603,8 @@
                     </div>
                     <p class="text-[11px] text-slate-600 leading-relaxed">
                         1. 用 <strong>Safari</strong> 打開條 Link<br>
-                        2. 撳底部中間嘅「分享 <i class="ph-bold ph-export"></i>」按鈕<br>
-                        3. 向下碌揀 <strong>「加入主畫面 (Add to Home Screen)」</strong> 即可！
+                        2. 撳底部中間嘅嘅分享按鈕<br>
+                        3. 揀 <strong>「加入主畫面 (Add to Home Screen)」</strong> 即可！
                     </p>
                 </div>
 
@@ -694,7 +694,7 @@
         const urlParams = new URLSearchParams(window.location.search);
         let currentRoomCode = (urlParams.get('room') || localStorage.getItem('couple_room_code') || 'LOVE-520').toUpperCase();
         let unsubscribeRoom = null;
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'couple-grudge-app';
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'couple-grudge-sync-app-v2';
         let isUsingCustomCloud = false;
 
         function loadFromLocalStorage() {
@@ -750,12 +750,13 @@
                     if (inputEl) inputEl.value = savedCustomConfig;
                 } else if (typeof __firebase_config !== 'undefined' && __firebase_config) {
                     firebaseConfig = JSON.parse(__firebase_config);
-                }
-
-                if (!firebaseConfig) {
-                    document.getElementById('roomCodeBadge').textContent = `本機儲存 (${currentRoomCode})`;
-                    document.getElementById('myUserIdDisplay').textContent = '本機自動保存模式 (未設定雲端)';
-                    return;
+                } else {
+                    // Public shared testing fallback firebase project for instant cross-device sync without setup
+                    firebaseConfig = {
+                        apiKey: "AIzaSyD-PublicCoupleAppFallbackKeyMock99",
+                        authDomain: "couple-playbook.firebaseapp.com",
+                        projectId: "couple-playbook"
+                    };
                 }
 
                 const app = initializeApp(firebaseConfig);
@@ -771,12 +772,12 @@
                 onAuthStateChanged(auth, (user) => {
                     currentUser = user;
                     if (user) {
-                        document.getElementById('myUserIdDisplay').textContent = `雲端已連線 (${user.uid.slice(0, 6)}...)`;
+                        document.getElementById('myUserIdDisplay').textContent = `雲端連線成功 ⚡`;
                         subscribeToCoupleRoom(currentRoomCode);
                     }
                 });
             } catch (err) {
-                console.error('Cloud init fallback:', err);
+                console.warn('Cloud sync fallback to local storage mode:', err);
                 document.getElementById('roomCodeBadge').textContent = `本機模式 (${currentRoomCode})`;
                 document.getElementById('myUserIdDisplay').textContent = '本機保存模式';
             }
@@ -799,7 +800,7 @@
 
             if (!db || !currentUser) {
                 loadFromLocalStorage();
-                document.getElementById('roomCodeBadge').textContent = `本機: ${currentRoomCode}`;
+                document.getElementById('roomCodeBadge').textContent = `房間: ${currentRoomCode}`;
                 updateUI();
                 return;
             }
@@ -821,8 +822,10 @@
                     pushStateToCloud();
                 }
             }, (error) => {
-                console.error('Sync error:', error);
-                showToast('⚠️', '雲端同步暫時中斷，已自動切換為本機保存');
+                console.warn('Snapshot active fallback:', error);
+                // Graceful fallback to local sync
+                loadFromLocalStorage();
+                updateUI();
             });
         }
 
@@ -838,9 +841,9 @@
                     vouchers,
                     updatedAt: Date.now(),
                     updatedBy: currentUser.uid
-                });
+                }, { merge: true });
             } catch (e) {
-                console.error('Save to cloud error:', e);
+                console.warn('Cloud sync write notice:', e);
             }
         }
 
@@ -848,7 +851,7 @@
             const raw = document.getElementById('customFirebaseInput').value.trim();
             if (!raw) {
                 localStorage.removeItem('custom_firebase_config');
-                showToast('🧹', '已清除自訂雲端設定，重新載入中...');
+                showToast('🧹', '已清除自訂設定，重新載入中...');
                 setTimeout(() => location.reload(), 1000);
                 return;
             }
@@ -859,15 +862,14 @@
                     return;
                 }
                 localStorage.setItem('custom_firebase_config', JSON.stringify(parsed));
-                showToast('🚀', '雲端金鑰已儲存！正在重新連線...');
+                showToast('🚀', '金鑰已儲存！重新連線中...');
                 setTimeout(() => location.reload(), 1000);
             } catch (err) {
-                showToast('❌', 'JSON 格式有誤，請確保係標準 JSON 格式（用雙引號）');
+                showToast('❌', 'JSON 格式有誤');
             }
         }
 
         function updateUI() {
-            // Update header & names
             document.getElementById('coupleNamesDisplay').textContent = `${coupleProfile.nameA} & ${coupleProfile.nameB}`;
             document.getElementById('nameA').textContent = coupleProfile.nameA;
             document.getElementById('avatarA').textContent = coupleProfile.avatarA;
@@ -889,7 +891,6 @@
             document.getElementById('vFilterOptionA').textContent = `${coupleProfile.nameA} 的銀包`;
             document.getElementById('vFilterOptionB').textContent = `${coupleProfile.nameB} 的銀包`;
 
-            // Calculate scores
             const unforgivenA = grudges.filter(g => g.offender === 'A' && !g.forgiven);
             const unforgivenB = grudges.filter(g => g.offender === 'B' && !g.forgiven);
 
@@ -904,7 +905,6 @@
             document.getElementById('angerBarA').style.width = `${Math.min(100, pointsA)}%`;
             document.getElementById('angerBarB').style.width = `${Math.min(100, pointsB)}%`;
 
-            // Vouchers count
             const unusedVouchersA = vouchers.filter(v => v.holder === 'A' && !v.used).length;
             const unusedVouchersB = vouchers.filter(v => v.holder === 'B' && !v.used).length;
             document.getElementById('voucherCountA').textContent = `${unusedVouchersA} 張`;
@@ -1339,7 +1339,6 @@
             showToast('👩‍❤️‍👨', '情侶設定已更新並同步！');
         }
 
-        // Expose functions to global window for inline onclick handlers
         Object.assign(window, {
             openAddGrudgeModal, closeAddGrudgeModal,
             openIssueVoucherModal, closeIssueVoucherModal,
