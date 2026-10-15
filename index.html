@@ -1,1027 +1,1178 @@
+```html
 <!DOCTYPE html>
 <html lang="zh-HK">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>情侶小氣簿 | 甜蜜記仇與哄哄神器</title>
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="情侶小氣簿">
-<meta name="theme-color" content="#fff1f2">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📓</text></svg>">
-<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2225%22 fill=%22%23f43f5e%22/><text x=%2250%22 y=%2268%22 font-size=%2255%22 text-anchor=%22middle%22>💖</text></svg>">
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/@phosphor-icons/web"></script>
-<script>
-tailwind.config = {
-theme: {
-extend: {
-fontFamily: {
-sans: ['"Noto Sans TC"', 'sans-serif'],
-},
-colors: {
-rose: {
-50: '#fff1f2',
-100: '#ffe4e6',
-200: '#fecdd3',
-300: '#fda4af',
-400: '#fb7185',
-500: '#f43f5e',
-600: '#e11d48',
-}
-}
-}
-}
-}
-</script>
-<style>
-body {
-background-color: #fff1f2;
-background-image: radial-gradient(#ffe4e6 1.5px, transparent 1.5px), radial-gradient(#ffe4e6 1.5px, #fff1f2 1.5px);
-background-size: 40px 40px;
-background-position: 0 0, 20px 20px;
-}
-.glass-card {
-background: rgba(255, 255, 255, 0.9);
-backdrop-filter: blur(12px);
-border: 1px solid rgba(255, 228, 230, 0.8);
-}
-@keyframes float {
-0%, 100% { transform: translateY(0px); }
-50% { transform: translateY(-6px); }
-}
-.animate-float {
-animation: float 3s ease-in-out infinite;
-}
-@keyframes pop {
-0% { transform: scale(0.9); opacity: 0; }
-100% { transform: scale(1); opacity: 1; }
-}
-.animate-pop {
-animation: pop 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-}
-.spin-wheel {
-transition: transform 3s cubic-bezier(0.15, 0.85, 0.25, 1);
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>情侶小氣簿 | 甜蜜記仇與哄哄神器</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="情侶小氣簿">
+    <meta name="theme-color" content="#fff1f2">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📓</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2225%22 fill=%22%23f43f5e%22/><text x=%2250%22 y=%2268%22 font-size=%2255%22 text-anchor=%22middle%22>💖</text></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans TC"', 'sans-serif'],
+                    },
+                    colors: {
+                        rose: {
+                            50: '#fff1f2',
+                            100: '#ffe4e6',
+                            200: '#fecdd3',
+                            300: '#fda4af',
+                            400: '#fb7185',
+                            500: '#f43f5e',
+                            600: '#e11d48',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #fff1f2;
+            background-image: radial-gradient(#ffe4e6 1.5px, transparent 1.5px), radial-gradient(#ffe4e6 1.5px, #fff1f2 1.5px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 228, 230, 0.8);
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+        }
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes pop {
+            0% { transform: scale(0.9); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .animate-pop {
+            animation: pop 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        .spin-wheel {
+            transition: transform 3s cubic-bezier(0.15, 0.85, 0.25, 1);
+        }
+    </style>
 </head>
 <body class="text-slate-800 antialiased min-h-screen pb-24 selection:bg-rose-200 selection:text-rose-900">
-​<header class="sticky top-0 z-30 glass-card shadow-sm px-4 py-3">
-<div class="max-w-xl mx-auto flex items-center justify-between">
-<div class="flex items-center gap-2">
-<div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-rose-500 to-pink-400 flex items-center justify-center text-white shadow-md shadow-rose-200">
-<i class="ph-fill ph-notebook text-2xl"></i>
-</div>
-<div>
-<h1 class="font-black text-lg text-slate-800 flex items-center gap-1">
-情侶小氣簿
-<button onclick="openRoomModal()" id="syncBadge" class="text-[11px] font-bold bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full flex items-center gap-1 border border-emerald-200 hover:bg-emerald-200 transition">
-<span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
-<span id="roomCodeBadge">連線中...</span>
-</button>
-</h1>
-<p class="text-xs text-slate-500">今日唔記低，聽日無仇報 哼！😤</p>
-</div>
-</div>
-<div class="flex items-center gap-1.5">
-<button onclick="openRoomModal()" class="p-2.5 rounded-xl bg-indigo-50 hover:bg-indigo-100 text-indigo-600 transition flex items-center gap-1 text-xs font-bold border border-indigo-200" title="雙人同步房間">
-<i class="ph-bold ph-cloud-arrow-up text-base"></i>
-<span class="hidden sm:inline">雙人連線</span>
-</button>
-<button onclick="openInstallModal()" class="p-2.5 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-600 transition flex items-center gap-1 text-xs font-bold border border-amber-200" title="安裝到手機主畫面">
-<i class="ph-bold ph-device-mobile text-base"></i>
-<span class="hidden sm:inline">變身App</span>
-</button>
-<button onclick="openSettingsModal()" class="p-2.5 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-600 transition flex items-center gap-1.5 text-xs font-bold border border-rose-200">
-<i class="ph-bold ph-users text-base"></i>
-<span id="coupleNamesDisplay">豬豬 & BB</span>
-</button>
-</div>
-</div>
-</header>
-​<!-- Toast Notification -->
-<div id="toast" class="fixed top-16 left-1/2 -translate-x-1/2 z-50 hidden bg-slate-900/90 text-white text-xs font-bold px-4 py-2.5 rounded-2xl shadow-xl flex items-center gap-2 backdrop-blur-md">
-<span id="toastIcon">✨</span>
-<span id="toastText">訊息提示</span>
-</div>
-​<main class="max-w-xl mx-auto px-4 pt-5 space-y-6">
-​<section class="glass-card rounded-3xl p-5 shadow-lg shadow-rose-100/60 relative overflow-hidden">
-<div class="flex items-center justify-between mb-4">
-<span class="text-xs font-bold uppercase tracking-wider text-rose-500 bg-rose-50 px-3 py-1 rounded-full border border-rose-200">
-🔥 怒氣值對決看板
-</span>
-<span id="relationshipStatus" class="text-xs font-bold text-slate-500">天下太平 💕</span>
-</div>
-​<div class="grid grid-cols-2 gap-4">
-<!-- Partner A ScoreCard -->
-<div class="bg-gradient-to-br from-rose-50 to-pink-50/50 rounded-2xl p-4 border border-rose-100 relative">
-<div class="flex items-center justify-between mb-2">
-<div class="flex items-center gap-2">
-<span class="text-2xl" id="avatarA">🐻</span>
-<div>
-<h3 class="font-bold text-slate-800 text-sm" id="nameA">豬豬</h3>
-<p class="text-[11px] text-slate-400">待清罪狀</p>
-</div>
-</div>
-<span id="unforgivenCountA" class="text-2xl font-black text-rose-600">0</span>
-</div>
-<div class="w-full bg-white rounded-full h-2.5 overflow-hidden border border-rose-100">
-<div id="angerBarA" class="bg-gradient-to-r from-amber-400 to-rose-500 h-full transition-all duration-500" style="width: 30%"></div>
-</div>
-<div class="flex justify-between items-center mt-1.5 text-[11px] text-slate-500">
-<span>危險度</span>
-<span id="angerPointsA" class="font-bold text-rose-500">0 pt</span>
-</div>
-<div class="mt-2 pt-2 border-t border-rose-200/50 flex items-center justify-between text-[11px]">
-<span class="text-slate-500">🎟️ 可用原諒券</span>
-<span id="voucherCountA" class="font-black text-rose-600 bg-white px-2 py-0.5 rounded-full border border-rose-200">0 張</span>
-</div>
-</div>
-​<!-- Partner B ScoreCard -->
-<div class="bg-gradient-to-br from-indigo-50/70 to-purple-50/50 rounded-2xl p-4 border border-indigo-100 relative">
-<div class="flex items-center justify-between mb-2">
-<div class="flex items-center gap-2">
-<span class="text-2xl" id="avatarB">🐰</span>
-<div>
-<h3 class="font-bold text-slate-800 text-sm" id="nameB">BB</h3>
-<p class="text-[11px] text-slate-400">待清罪狀</p>
-</div>
-</div>
-<span id="unforgivenCountB" class="text-2xl font-black text-indigo-600">0</span>
-</div>
-<div class="w-full bg-white rounded-full h-2.5 overflow-hidden border border-indigo-100">
-<div id="angerBarB" class="bg-gradient-to-r from-indigo-400 to-purple-500 h-full transition-all duration-500" style="width: 15%"></div>
-</div>
-<div class="flex justify-between items-center mt-1.5 text-[11px] text-slate-500">
-<span>危險度</span>
-<span id="angerPointsB" class="font-bold text-indigo-500">0 pt</span>
-</div>
-<div class="mt-2 pt-2 border-t border-indigo-200/50 flex items-center justify-between text-[11px]">
-<span class="text-slate-500">🎟️ 可用原諒券</span>
-<span id="voucherCountB" class="font-black text-indigo-600 bg-white px-2 py-0.5 rounded-full border border-indigo-200">0 張</span>
-</div>
-</div>
-</div>
-</section>
-​<!-- Action Buttons -->
-<section class="grid grid-cols-3 gap-2.5">
-<button onclick="openAddGrudgeModal()" class="bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white font-bold py-3.5 px-3 rounded-2xl shadow-lg shadow-rose-200 flex flex-col sm:flex-row items-center justify-center gap-1.5 transition active:scale-95 text-xs sm:text-sm">
-<i class="ph-bold ph-plus-circle text-xl"></i>
-<span>記一筆新仇</span>
-</button>
-<button onclick="openIssueVoucherModal()" class="bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white font-bold py-3.5 px-3 rounded-2xl shadow-lg shadow-purple-200 flex flex-col sm:flex-row items-center justify-center gap-1.5 transition active:scale-95 text-xs sm:text-sm">
-<i class="ph-bold ph-ticket text-xl"></i>
-<span>派發和好券</span>
-</button>
-<button onclick="openWheelModal()" class="bg-white hover:bg-amber-50 text-slate-700 font-bold py-3.5 px-3 rounded-2xl shadow-md shadow-rose-100/50 border border-amber-200 flex flex-col sm:flex-row items-center justify-center gap-1.5 transition active:scale-95 text-xs sm:text-sm">
-<i class="ph-fill ph-spinner-ball text-xl text-amber-500"></i>
-<span>賠罪大轉盤</span>
-</button>
-</section>
-​<!-- Main View Switcher: Grudges vs Vouchers -->
-<div class="flex bg-white/80 p-1.5 rounded-2xl shadow-sm border border-rose-100">
-<button onclick="switchMainView('grudges')" id="viewBtn-grudges" class="flex-1 py-2.5 rounded-xl font-black text-xs sm:text-sm bg-rose-500 text-white shadow-sm transition flex items-center justify-center gap-1.5">
-<i class="ph-fill ph-BookOpenText"></i> 記仇罪狀簿 (<span id="totalGrudgeTabCount">0</span>)
-</button>
-<button onclick="switchMainView('vouchers')" id="viewBtn-vouchers" class="flex-1 py-2.5 rounded-xl font-black text-xs sm:text-sm text-slate-600 hover:text-violet-600 transition flex items-center justify-center gap-1.5">
-<i class="ph-fill ph-ticket"></i> 和好 / 原諒券銀包 (<span id="totalVoucherTabCount">0</span>)
-</button>
-</div>
-​<!-- Grudges Section -->
-<section id="grudgesSection" class="space-y-4">
-<div class="flex items-center justify-between flex-wrap gap-2">
-<div class="flex bg-white p-1 rounded-2xl shadow-sm border border-rose-100 text-xs font-bold">
-<button onclick="setFilter('all')" id="tab-all" class="px-3.5 py-2 rounded-xl bg-rose-500 text-white transition">全部記錄</button>
-<button onclick="setFilter('unforgiven')" id="tab-unforgiven" class="px-3.5 py-2 rounded-xl text-slate-600 hover:text-rose-500 transition">未原諒 😤</button>
-<button onclick="setFilter('forgiven')" id="tab-forgiven" class="px-3.5 py-2 rounded-xl text-slate-600 hover:text-rose-500 transition">已哄好 💖</button>
-</div>
-​<select id="offenderFilter" onchange="renderGrudges()" class="bg-white border border-rose-100 rounded-xl px-3 py-2 text-xs font-bold text-slate-600 focus:outline-none focus:ring-2 focus:ring-rose-300">
-<option value="all">所有犯人</option>
-<option value="A" id="filterOptionA">只看 豬豬</option>
-<option value="B" id="filterOptionB">只看 BB</option>
-</select>
-</div>
-​<!-- Grudge List Container -->
-<div id="grudgeList" class="space-y-3">
-<!-- Populated by JS -->
-</div>
-</section>
-​<!-- Vouchers Wallet Section -->
-<section id="vouchersSection" class="space-y-4 hidden">
-<div class="glass-card rounded-3xl p-4 border border-violet-200 bg-gradient-to-r from-violet-50/80 to-pink-50/80 flex items-center justify-between gap-3">
-<div class="space-y-0.5">
-<h3 class="text-sm font-black text-violet-900 flex items-center gap-1.5">
-<span>🎟️</span> 情侶專屬「和好 / 原諒券」
-</h3>
-<p class="text-xs text-slate-600">互相派發甜蜜特權券！犯事嗰陣仲可以拎張「原諒券」出嚟直接免死銷案～</p>
-</div>
-<button onclick="openIssueVoucherModal()" class="shrink-0 bg-violet-600 hover:bg-violet-700 text-white text-xs font-bold px-3.5 py-2.5 rounded-xl shadow-sm transition">
-+ 派發新券
-</button>
-</div>
-​<div class="flex items-center justify-between">
-<div class="flex bg-white p-1 rounded-2xl shadow-sm border border-violet-100 text-xs font-bold">
-<button onclick="setVoucherFilter('unused')" id="vtab-unused" class="px-3.5 py-2 rounded-xl bg-violet-600 text-white transition">可使用 ✨</button>
-<button onclick="setVoucherFilter('used')" id="vtab-used" class="px-3.5 py-2 rounded-xl text-slate-600 hover:text-violet-600 transition">已兌換 🧾</button>
-</div>
-<select id="voucherHolderFilter" onchange="renderVouchers()" class="bg-white border border-violet-100 rounded-xl px-3 py-2 text-xs font-bold text-slate-600 focus:outline-none">
-<option value="all">全部持有人</option>
-<option value="A" id="vFilterOptionA">豬豬 的銀包</option>
-<option value="B" id="vFilterOptionB">BB 的銀包</option>
-</select>
-</div>
-​<div id="voucherList" class="space-y-3">
-<!-- Populated by JS -->
-</div>
-</section>
-​</main>
-​<div id="addGrudgeModal" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm hidden flex items-center justify-center p-4">
-<div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-rose-100 animate-pop max-h-[90vh] overflow-y-auto">
-<div class="flex items-center justify-between mb-4">
-<h2 class="text-lg font-black text-slate-800 flex items-center gap-2">
-<span class="text-2xl">📝</span> 記低罪狀
-</h2>
-<button onclick="closeAddGrudgeModal()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center hover:bg-slate-200">
-<i class="ph-bold ph-x"></i>
-</button>
-</div>
-​<form id="grudgeForm" onsubmit="submitGrudge(event)" class="space-y-4">
-<div>
-<label class="block text-xs font-bold text-slate-500 mb-2">邊個犯事？</label>
-<div class="grid grid-cols-2 gap-3">
-<label class="cursor-pointer">
-<input type="radio" name="offender" value="A" checked class="peer hidden">
-<div class="p-3 rounded-2xl border-2 border-slate-100 peer-checked:border-rose-500 peer-checked:bg-rose-50 flex items-center gap-2 transition">
-<span class="text-2xl" id="formAvatarA">🐻</span>
-<span class="font-bold text-sm" id="formNameA">豬豬</span>
-</div>
-</label>
-<label class="cursor-pointer">
-<input type="radio" name="offender" value="B" class="peer hidden">
-<div class="p-3 rounded-2xl border-2 border-slate-100 peer-checked:border-indigo-500 peer-checked:bg-indigo-50 flex items-center gap-2 transition">
-<span class="text-2xl" id="formAvatarB">🐰</span>
-<span class="font-bold text-sm" id="formNameB">BB</span>
-</div>
-</label>
-</div>
-</div>
-​<div>
-<label class="block text-xs font-bold text-slate-500 mb-2">罪名分類</label>
-<div class="grid grid-cols-3 gap-2 text-xs font-bold" id="categoryButtons">
-<button type="button" onclick="selectCategory('🍔 偷食嘢')" class="cat-btn p-2.5 rounded-xl border border-rose-200 bg-rose-50 text-rose-600 transition">🍔 偷食嘢</button>
-<button type="button" onclick="selectCategory('🐢 遲大到')" class="cat-btn p-2.5 rounded-xl border border-slate-200 text-slate-600 transition">🐢 遲大到</button>
-<button type="button" onclick="selectCategory('🎮 掛住打機')" class="cat-btn p-2.5 rounded-xl border border-slate-200 text-slate-600 transition">🎮 掛住打機</button>
-<button type="button" onclick="selectCategory('💬 敷衍覆機')" class="cat-btn p-2.5 rounded-xl border border-slate-200 text-slate-600 transition">💬 敷衍覆機</button>
-<button type="button" onclick="selectCategory('🧠 唔記得嘢')" class="cat-btn p-2.5 rounded-xl border border-slate-200 text-slate-600 transition">🧠 唔記得嘢</button>
-<button type="button" onclick="selectCategory('💢 講嘢寸嘴')" class="cat-btn p-2.5 rounded-xl border border-slate-200 text-slate-600 transition">💢 講嘢寸嘴</button>
-</div>
-<input type="hidden" id="selectedCategory" value="🍔 偷食嘢">
-</div>
-​<div>
-<label class="block text-xs font-bold text-slate-500 mb-1.5">事發經過（罪狀詳情）</label>
-<textarea id="grudgeTitle" required rows="2" placeholder="例如：食咗我留喺雪櫃最後一粒布甸，仲要唔認！" class="w-full rounded-2xl border border-slate-200 p-3 text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"></textarea>
-</div>
-​<div>
-<div class="flex justify-between items-center mb-1.5">
-<label class="text-xs font-bold text-slate-500">嬲豬程度</label>
-<span id="angerLevelLabel" class="text-xs font-black text-rose-500">🔥🔥🔥 中度嬲豬 (30 pt)</span>
-</div>
-<input type="range" id="angerLevel" min="1" max="5" value="3" oninput="updateAngerLabel(this.value)" class="w-full accent-rose-500 cursor-pointer">
-</div>
-​<div>
-<label class="block text-xs font-bold text-slate-500 mb-1.5">要求點樣賠罪 / 哄返？</label>
-<div class="flex gap-2 mb-2 overflow-x-auto pb-1 text-xs">
-<button type="button" onclick="setCompensation('請飲珍珠奶茶 🧋')" class="shrink-0 px-2.5 py-1 bg-amber-50 text-amber-700 rounded-lg border border-amber-200 font-medium">🧋 珍奶一杯</button>
-<button type="button" onclick="setCompensation('揼骨按摩 15 分鐘 💆‍♂️')" class="shrink-0 px-2.5 py-1 bg-amber-50 text-amber-700 rounded-lg border border-amber-200 font-medium">💆‍♂️ 按摩15分鐘</button>
-<button type="button" onclick="setCompensation('請食大餐 焼肉/火鍋 🥩')" class="shrink-0 px-2.5 py-1 bg-amber-50 text-amber-700 rounded-lg border border-amber-200 font-medium">🥩 請食大餐</button>
-<button type="button" onclick="setCompensation('誠懇道歉 + 錫返 10 啖 😘')" class="shrink-0 px-2.5 py-1 bg-amber-50 text-amber-700 rounded-lg border border-amber-200 font-medium">😘 錫返10啖</button>
-</div>
-<input type="text" id="grudgeCompensation" required value="請飲珍珠奶茶 🧋" class="w-full rounded-2xl border border-slate-200 p-3 text-sm focus:outline-none focus:ring-2 focus:ring-rose-400">
-</div>
-​<button type="submit" class="w-full bg-gradient-to-r from-rose-500 to-pink-500 text-white font-bold py-3.5 rounded-2xl shadow-lg shadow-rose-200 hover:opacity-95 transition">
-蓋印記仇！💢
-</button>
-</form>
-</div>
-</div>
-​<div id="wheelModal" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm hidden flex items-center justify-center p-4">
-<div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-amber-100 animate-pop text-center">
-<div class="flex items-center justify-between mb-2">
-<h2 class="text-lg font-black text-slate-800 flex items-center gap-2">
-<span>🎡</span> 誠意賠罪大轉盤
-</h2>
-<button onclick="closeWheelModal()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center hover:bg-slate-200">
-<i class="ph-bold ph-x"></i>
-</button>
-</div>
-<p class="text-xs text-slate-500 mb-5">唔知點哄返對方？即刻轉個賠罪任務啦！</p>
-​<div class="relative w-56 h-56 mx-auto mb-6 flex items-center justify-center">
-<div id="wheelGraphic" class="w-full h-full rounded-full border-8 border-amber-200 shadow-inner flex items-center justify-center bg-gradient-to-tr from-rose-100 via-amber-50 to-pink-100 spin-wheel">
-<div class="text-center p-4">
-<span id="wheelEmoji" class="text-5xl block mb-2">🎁</span>
-<span id="wheelResultText" class="font-black text-sm text-slate-800 block">點擊下方開始抽籤</span>
-</div>
-</div>
-</div>
-​<button onclick="spinApologyWheel()" id="spinBtn" class="w-full bg-gradient-to-r from-amber-400 to-orange-400 hover:from-amber-500 hover:to-orange-500 text-white font-black py-3.5 rounded-2xl shadow-lg shadow-amber-200 transition active:scale-95">
-即刻抽賠罪任務！🎲
-</button>
-</div>
-</div>
-​<div id="settingsModal" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm hidden flex items-center justify-center p-4">
-<div class="bg-white rounded-3xl max-w-sm w-full p-6 shadow-2xl border border-rose-100 animate-pop">
-<div class="flex items-center justify-between mb-4">
-<h2 class="text-lg font-black text-slate-800">👩‍❤️‍👨 情侶檔案設定</h2>
-<button onclick="closeSettingsModal()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center">
-<i class="ph-bold ph-x"></i>
-</button>
-</div>
-<div class="space-y-4">
-<div>
-<label class="text-xs font-bold text-slate-500 block mb-1">伴侶 A 暱稱 & 代表圖案</label>
-<div class="flex gap-2">
-<select id="inputAvatarA" class="border border-slate-200 rounded-xl px-2 text-xl">
-<option value="🐻">🐻</option>
-<option value="🐶">🐶</option>
-<option value="🦊">🦊</option>
-<option value="🦁">🦁</option>
-<option value="👦">👦</option>
-</select>
-<input type="text" id="inputNameA" value="豬豬" class="w-full border border-slate-200 rounded-xl p-2.5 text-sm font-bold">
-</div>
-</div>
-<div>
-<label class="text-xs font-bold text-slate-500 block mb-1">伴侶 B 暱稱 & 代表圖案</label>
-<div class="flex gap-2">
-<select id="inputAvatarB" class="border border-slate-200 rounded-xl px-2 text-xl">
-<option value="🐰">🐰</option>
-<option value="🐱">🐱</option>
-<option value="🐼">🐼</option>
-<option value="🐹">🐹</option>
-<option value="👧">👧</option>
-</select>
-<input type="text" id="inputNameB" value="BB" class="w-full border border-slate-200 rounded-xl p-2.5 text-sm font-bold">
-</div>
-</div>
-<button onclick="saveCoupleSettings()" class="w-full bg-rose-500 text-white font-bold py-3 rounded-2xl shadow-md hover:bg-rose-600 transition">
-儲存設定 ✨
-</button>
-</div>
-</div>
-</div>
-​<!-- Issue Voucher Modal -->
-<div id="issueVoucherModal" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm hidden flex items-center justify-center p-4">
-<div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-violet-100 animate-pop max-h-[90vh] overflow-y-auto">
-<div class="flex items-center justify-between mb-4">
-<h2 class="text-lg font-black text-slate-800 flex items-center gap-2">
-<span class="text-2xl">🎟️</span> 派發「和好 / 原諒券」
-</h2>
-<button onclick="closeIssueVoucherModal()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center hover:bg-slate-200">
-<i class="ph-bold ph-x"></i>
-</button>
-</div>
-​<form onsubmit="submitVoucher(event)" class="space-y-4">
-<div>
-<label class="block text-xs font-bold text-slate-500 mb-2">派俾邊個？（持有人）</label>
-<div class="grid grid-cols-2 gap-3">
-<label class="cursor-pointer">
-<input type="radio" name="voucherReceiver" value="A" checked class="peer hidden">
-<div class="p-3 rounded-2xl border-2 border-slate-100 peer-checked:border-violet-500 peer-checked:bg-violet-50 flex items-center gap-2 transition">
-<span class="text-2xl" id="vFormAvatarA">🐻</span>
-<div>
-<span class="font-bold text-sm block" id="vFormNameA">豬豬</span>
-<span class="text-[10px] text-slate-400">送俾佢傍身</span>
-</div>
-</div>
-</label>
-<label class="cursor-pointer">
-<input type="radio" name="voucherReceiver" value="B" class="peer hidden">
-<div class="p-3 rounded-2xl border-2 border-slate-100 peer-checked:border-violet-500 peer-checked:bg-violet-50 flex items-center gap-2 transition">
-<span class="text-2xl" id="vFormAvatarB">🐰</span>
-<div>
-<span class="font-bold text-sm block" id="vFormNameB">BB</span>
-<span class="text-[10px] text-slate-400">送俾佢傍身</span>
-</div>
-</div>
-</label>
-</div>
-</div>
-​<div>
-<label class="block text-xs font-bold text-slate-500 mb-2">選擇神券款式</label>
-<div class="grid grid-cols-2 gap-2 text-xs font-bold">
-<button type="button" onclick="selectVoucherPreset('🛡️ 免死金牌原諒券', '無論犯咩事，憑券即刻無條件原諒一次，不准翻舊帳！')" class="p-2.5 rounded-xl border border-violet-200 bg-violet-50 text-violet-700 text-left hover:bg-violet-100 transition">
-🛡️ 免死金牌原諒券
-</button>
-<button type="button" onclick="selectVoucherPreset('🤝 5分鐘破冰和好券', '冷戰期間使用，雙方必須喺 5 分鐘內抱抱和好！')" class="p-2.5 rounded-xl border border-slate-200 text-slate-700 text-left hover:bg-slate-50 transition">
-🤝 5分鐘破冰和好券
-</button>
-<button type="button" onclick="selectVoucherPreset('🤫 停止碎碎念靜音券', '使用後對方今日唔可以再就同一件事吟吟沉沉！')" class="p-2.5 rounded-xl border border-slate-200 text-slate-700 text-left hover:bg-slate-50 transition">
-🤫 停止碎碎念靜音券
-</button>
-<button type="button" onclick="selectVoucherPreset('👑 旨意特權券', '憑券可以要求對方無條件答應一個合理小要求！')" class="p-2.5 rounded-xl border border-slate-200 text-slate-700 text-left hover:bg-slate-50 transition">
-👑 旨意特權券
-</button>
-</div>
-</div>
-​<div>
-<label class="block text-xs font-bold text-slate-500 mb-1">神券名稱</label>
-<input type="text" id="voucherTitle" required value="🛡️ 免死金牌原諒券" class="w-full rounded-2xl border border-slate-200 p-3 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-violet-400">
-</div>
-​<div>
-<label class="block text-xs font-bold text-slate-500 mb-1">使用效果 / 甜言蜜語備註</label>
-<textarea id="voucherDesc" required rows="2" class="w-full rounded-2xl border border-slate-200 p-3 text-sm focus:outline-none focus:ring-2 focus:ring-violet-400">無論犯咩事，憑券即刻無條件原諒一次，不准翻舊帳！</textarea>
-</div>
-​<button type="submit" class="w-full bg-gradient-to-r from-violet-500 to-purple-600 text-white font-bold py-3.5 rounded-2xl shadow-lg shadow-violet-200 hover:opacity-95 transition">
-即刻派發神券！✨
-</button>
-</form>
-</div>
-</div>
-​<!-- Forgive Choice Modal -->
-<div id="forgiveChoiceModal" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm hidden flex items-center justify-center p-4">
-<div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-emerald-100 animate-pop space-y-4">
-<div class="flex items-center justify-between">
-<h2 class="text-lg font-black text-slate-800 flex items-center gap-2">
-<span>💖</span> 準備銷案原諒！
-</h2>
-<button onclick="closeForgiveChoiceModal()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center">
-<i class="ph-bold ph-x"></i>
-</button>
-</div>
-​<div id="forgiveGrudgeSummary" class="p-3.5 rounded-2xl bg-rose-50 border border-rose-100 text-xs space-y-1">
-<!-- Populated by JS -->
-</div>
-​<div class="space-y-2.5">
-<p class="text-xs font-bold text-slate-500">選擇銷案方式：</p>
-<button onclick="confirmNormalForgive()" class="w-full p-3.5 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-bold text-sm shadow-md flex items-center justify-between hover:opacity-95 transition">
-<span class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-lg"></i> 已經乖乖履行賠罪條件，直接原諒！</span>
-<i class="ph-bold ph-caret-right"></i>
-</button>
-​<div id="availableVouchersForGrudge" class="space-y-2 pt-2">
-<!-- Populated if offender has unused vouchers -->
-</div>
-</div>
-</div>
-</div>
-​<!-- Cloud Sync Room Modal -->
-<div id="roomModal" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm hidden flex items-center justify-center p-4">
-<div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-indigo-100 animate-pop space-y-4 max-h-[90vh] overflow-y-auto">
-<div class="flex items-center justify-between">
-<h2 class="text-lg font-black text-slate-800 flex items-center gap-2">
-<i class="ph-fill ph-cloud-check text-indigo-500 text-2xl"></i> 雲端雙人連線設定
-</h2>
-<button onclick="closeRoomModal()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center">
-<i class="ph-bold ph-x"></i>
-</button>
-</div>
-​<div class="bg-indigo-50/80 border border-indigo-100 rounded-2xl p-4 space-y-2">
-<div class="flex items-center justify-between">
-<span class="text-xs font-bold text-indigo-900">目前房間暗號：</span>
-<span id="currentRoomDisplay" class="font-mono font-black text-sm bg-white px-3 py-1 rounded-xl text-indigo-600 border border-indigo-200">LOVE-520</span>
-</div>
-<p class="text-[11px] text-slate-600 leading-relaxed">
-輸入相同暗號即可同步。如果想使用專屬雲端，請喺下方填入你頭先取得嘅 Firebase JSON 金鑰！
-</p>
-<div class="text-[10px] text-slate-400 pt-1 flex items-center justify-between border-t border-indigo-100">
-<span>狀態：<span id="myUserIdDisplay" class="font-mono font-bold text-indigo-600">使用本機/暗號模式</span></span>
-<button onclick="copyRoomCode()" class="text-indigo-600 font-bold hover:underline flex items-center gap-0.5">
-<i class="ph-bold ph-copy"></i> 複製暗號
-</button>
-</div>
-</div>
-​<div class="space-y-2">
-<label class="block text-xs font-bold text-slate-600">切換房間暗號</label>
-<div class="flex gap-2">
-<input type="text" id="roomCodeInput" placeholder="例如：LOVE-520" class="flex-1 border border-slate-200 rounded-2xl px-3.5 py-2.5 text-sm font-bold uppercase focus:outline-none focus:ring-2 focus:ring-indigo-400">
-<button onclick="joinCustomRoom()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2.5 rounded-2xl text-xs shadow-md transition shrink-0">
-切換 🔗
-</button>
-</div>
-</div>
-​<div class="bg-amber-50 border border-amber-200 rounded-2xl p-3 space-y-2">
-<label class="block text-xs font-black text-amber-900">⚙️ 貼上你專屬嘅 Firebase JSON 金鑰：</label>
-<textarea id="customFirebaseInput" rows="3" placeholder='{"apiKey": "AIzaSy...", "authDomain": "...", "projectId": "..."}' class="w-full font-mono text-[10px] p-2 rounded-xl border border-amber-300 bg-white focus:outline-none focus:ring-1 focus:ring-amber-400"></textarea>
-<button onclick="saveCustomFirebaseConfig()" class="w-full py-2.5 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-bold rounded-xl shadow-sm text-xs transition">
-儲存並啟動專屬雲端 🚀
-</button>
-</div>
-​<div class="pt-2 border-t border-slate-100">
-<button onclick="copyInviteMessage()" class="w-full py-3 rounded-2xl bg-gradient-to-r from-rose-500 to-pink-500 text-white font-bold text-xs shadow-md flex items-center justify-center gap-1.5 hover:opacity-95 transition">
-<i class="ph-bold ph-share-network text-base"></i> 一鍵複製邀請連結發俾另一半
-</button>
-</div>
-</div>
-</div>
-​<!-- Mobile App Install Guide Modal -->
-<div id="installModal" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm hidden flex items-center justify-center p-4">
-<div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-amber-100 animate-pop space-y-4 max-h-[90vh] overflow-y-auto">
-<div class="flex items-center justify-between">
-<h2 class="text-lg font-black text-slate-800 flex items-center gap-2">
-<span class="text-2xl">📱</span> 點樣裝落手機主畫面？
-</h2>
-<button onclick="closeInstallModal()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center">
-<i class="ph-bold ph-x"></i>
-</button>
-</div>
-​<div class="space-y-2.5 text-xs">
-<div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 space-y-1">
-<div class="font-black text-slate-800 flex items-center gap-1.5">
-<span>🍎</span> iPhone (iOS) 用 Safari 變身 App：
-</div>
-<p class="text-[11px] text-slate-600 leading-relaxed">
-1. 用 <strong>Safari</strong> 打開你個網址
 
-2. 撳底部中間嘅「分享 <i class="ph-bold ph-export"></i>」按鈕
+    <header class="sticky top-0 z-30 glass-card shadow-sm px-4 py-3">
+        <div class="max-w-xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-rose-500 to-pink-400 flex items-center justify-center text-white shadow-md shadow-rose-200">
+                    <i class="ph-fill ph-notebook text-2xl"></i>
+                </div>
+                <div>
+                    <h1 class="font-black text-lg text-slate-800 flex items-center gap-1">
+                        情侶小氣簿
+                        <button onclick="openRoomModal()" id="syncBadge" class="text-[11px] font-bold bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full flex items-center gap-1 border border-emerald-200 hover:bg-emerald-200 transition">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
+                            <span id="roomCodeBadge">連線中...</span>
+                        </button>
+                    </h1>
+                    <p class="text-xs text-slate-500">今日唔記低，聽日無仇報 哼！😤</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-1.5">
+                <button onclick="openRoomModal()" class="p-2.5 rounded-xl bg-indigo-50 hover:bg-indigo-100 text-indigo-600 transition flex items-center gap-1 text-xs font-bold border border-indigo-200" title="雙人同步房間">
+                    <i class="ph-bold ph-cloud-arrow-up text-base"></i>
+                    <span class="hidden sm:inline">雙人連線</span>
+                </button>
+                <button onclick="openInstallModal()" class="p-2.5 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-600 transition flex items-center gap-1 text-xs font-bold border border-amber-200" title="安裝到手機主畫面">
+                    <i class="ph-bold ph-device-mobile text-base"></i>
+                    <span class="hidden sm:inline">變身App</span>
+                </button>
+                <button onclick="openSettingsModal()" class="p-2.5 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-600 transition flex items-center gap-1.5 text-xs font-bold border border-rose-200">
+                    <i class="ph-bold ph-users text-base"></i>
+                    <span id="coupleNamesDisplay">豬豬 & BB</span>
+                </button>
+            </div>
+        </div>
+    </header>
 
-3. 向下碌揀 <strong>「加入主畫面 (Add to Home Screen)」</strong> 即可！
-</p>
-</div>
-​<div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 space-y-1">
-<div class="font-black text-slate-800 flex items-center gap-1.5">
-<span>🤖</span> Android 用 Chrome 變身 App：
-</div>
-<p class="text-[11px] text-slate-600 leading-relaxed">
-1. 用 <strong>Chrome</strong> 打開網址
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed top-16 left-1/2 -translate-x-1/2 z-50 hidden bg-slate-900/90 text-white text-xs font-bold px-4 py-2.5 rounded-2xl shadow-xl flex items-center gap-2 backdrop-blur-md">
+        <span id="toastIcon">✨</span>
+        <span id="toastText">訊息提示</span>
+    </div>
 
-2. 撳右上角「⋮」選單
+    <main class="max-w-xl mx-auto px-4 pt-5 space-y-6">
 
-3. 揀 <strong>「加到主畫面」或「安裝應用程式」</strong> 即可！
-</p>
-</div>
-</div>
-</div>
-</div>
-​<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-​let coupleProfile = { nameA: '豬豬', avatarA: '🐻', nameB: 'BB', avatarB: '🐰' };
-let grudges = [{ id: 1, offender: 'A', category: '🍔 偷食嘢', title: '食咗我留喺雪櫃最後一啖甜品！', angerLevel: 3, compensation: '請飲珍珠奶茶 🧋', date: '今日', forgiven: false, forgivenNote: '' }];
-let vouchers = [
-{ id: 101, holder: 'A', issuer: 'B', title: '🛡️ 免死金牌原諒券', desc: '無論犯咩事，憑券即刻無條件原諒一次！', date: '預設贈送', used: false, usedFor: '' },
-{ id: 102, holder: 'B', issuer: 'A', title: '🤝 5分鐘破冰和好券', desc: '冷戰期間使用，雙方必須喺 5 分鐘內抱抱和好！', date: '預設贈送', used: false, usedFor: '' }
-];
-​const apologyWheelItems = [
-{ emoji: '🧋', text: '即刻買杯手搖飲品孝敬對方' },
-{ emoji: '💆‍♂️', text: '人肉按摩揼骨 15 分鐘' },
-{ emoji: '😘', text: '抱住錫返 10 啖 + 講我愛你' },
-{ emoji: '🥩', text: '今個星期請食一頓好西大餐' },
-{ emoji: '🧹', text: '包辦今日所有家務/洗碗' },
-{ emoji: '🧧', text: '派封 $52 甜蜜氹返利是' },
-{ emoji: '🙇‍♂️', text: '錄一段 30 秒超肉麻道歉語音' }
-];
-​let currentFilter = 'all';
-let currentVoucherFilter = 'unused';
-let currentMainView = 'grudges';
-let pendingForgiveGrudgeId = null;
-let wheelRotation = 0;
-​let db = null;
-let auth = null;
-let unsubscribeRoom = null;
-const urlParams = new URLSearchParams(window.location.search);
-let currentRoomCode = (urlParams.get('room') || localStorage.getItem('couple_room_code') || 'LOVE-520').toUpperCase();
-​function loadFromLocalStorage() {
-try {
-const saved = localStorage.getItem(couple_data_${currentRoomCode});
-if (saved) {
-const parsed = JSON.parse(saved);
-if (parsed.coupleProfile) coupleProfile = parsed.coupleProfile;
-if (Array.isArray(parsed.grudges)) grudges = parsed.grudges;
-if (Array.isArray(parsed.vouchers)) vouchers = parsed.vouchers;
-}
-} catch (e) { console.warn(e); }
-}
-​function saveToLocalStorage() {
-try {
-localStorage.setItem('couple_room_code', currentRoomCode);
-localStorage.setItem(couple_data_${currentRoomCode}, JSON.stringify({ coupleProfile, grudges, vouchers, updatedAt: Date.now() }));
-} catch (e) { console.warn(e); }
-}
-​function showToast(icon, text) {
-const toast = document.getElementById('toast');
-document.getElementById('toastIcon').textContent = icon;
-document.getElementById('toastText').textContent = text;
-toast.classList.remove('hidden');
-setTimeout(() => toast.classList.add('hidden'), 3000);
-}
-​async function initApp() {
-loadFromLocalStorage();
-updateUI();
-​const savedCustomConfig = localStorage.getItem('custom_firebase_config');
-if (savedCustomConfig) {
-document.getElementById('customFirebaseInput').value = savedCustomConfig;
-try {
-const cfg = JSON.parse(savedCustomConfig);
-const app = initializeApp(cfg);
-auth = getAuth(app);
-db = getFirestore(app);
-await signInAnonymously(auth);
-document.getElementById('roomCodeBadge').textContent = 雲端連線中: ${currentRoomCode};
-document.getElementById('myUserIdDisplay').textContent = 'Firebase 專屬雲端運作中 ⚡';
-subscribeToCloudRoom(currentRoomCode);
-return;
-} catch (e) {
-console.error('Firebase init error:', e);
-showToast('⚠️', '專屬 Firebase 雲端連線失敗，請檢查 JSON 格式');
-}
-}
-document.getElementById('roomCodeBadge').textContent = 本機模式 (${currentRoomCode});
-}
-​function subscribeToCloudRoom(roomCode) {
-currentRoomCode = roomCode.toUpperCase();
-localStorage.setItem('couple_room_code', currentRoomCode);
-document.getElementById('currentRoomDisplay').textContent = currentRoomCode;
-document.getElementById('roomCodeInput').value = currentRoomCode;
-​if (!db) return;
-if (unsubscribeRoom) unsubscribeRoom();
-​const roomRef = doc(db, 'coupleRooms', currentRoomCode);
-unsubscribeRoom = onSnapshot(roomRef, (snapshot) => {
-if (snapshot.exists()) {
-const data = snapshot.data();
-if (data.coupleProfile) coupleProfile = data.coupleProfile;
-if (Array.isArray(data.grudges)) grudges = data.grudges;
-if (Array.isArray(data.vouchers)) vouchers = data.vouchers;
-saveToLocalStorage();
-updateUI();
-} else {
-pushStateToCloud();
-}
-});
-}
-​async function pushStateToCloud() {
-saveToLocalStorage();
-updateUI();
-if (!db) return;
-try {
-const roomRef = doc(db, 'coupleRooms', currentRoomCode);
-await setDoc(roomRef, { coupleProfile, grudges, vouchers, updatedAt: Date.now() });
-} catch (e) {
-console.error('Push error:', e);
-}
-}
-​function saveCustomFirebaseConfig() {
-const raw = document.getElementById('customFirebaseInput').value.trim();
-if (!raw) {
-localStorage.removeItem('custom_firebase_config');
-showToast('🧹', '已清除設定，重新載入...');
-setTimeout(() => location.reload(), 1000);
-return;
-}
-try {
-JSON.parse(raw);
-localStorage.setItem('custom_firebase_config', raw);
-showToast('🚀', '已儲存金鑰！重啟連線中...');
-setTimeout(() => location.reload(), 1000);
-} catch (e) {
-showToast('❌', 'JSON 格式錯誤，請確保使用雙引號標準格式');
-}
-}
-​function updateUI() {
-document.getElementById('coupleNamesDisplay').textContent = ${coupleProfile.nameA} & ${coupleProfile.nameB};
-document.getElementById('nameA').textContent = coupleProfile.nameA;
-document.getElementById('avatarA').textContent = coupleProfile.avatarA;
-document.getElementById('nameB').textContent = coupleProfile.nameB;
-document.getElementById('avatarB').textContent = coupleProfile.avatarB;
-​document.getElementById('formNameA').textContent = coupleProfile.nameA;
-document.getElementById('formAvatarA').textContent = coupleProfile.avatarA;
-document.getElementById('formNameB').textContent = coupleProfile.nameB;
-document.getElementById('formAvatarB').textContent = coupleProfile.avatarB;
-​document.getElementById('vFormNameA').textContent = coupleProfile.nameA;
-document.getElementById('vFormAvatarA').textContent = coupleProfile.avatarA;
-document.getElementById('vFormNameB').textContent = coupleProfile.nameB;
-document.getElementById('vFormAvatarB').textContent = coupleProfile.avatarB;
-​document.getElementById('filterOptionA').textContent = 只看 ${coupleProfile.nameA};
-document.getElementById('filterOptionB').textContent = 只看 ${coupleProfile.nameB};
-document.getElementById('vFilterOptionA').textContent = ${coupleProfile.nameA} 的銀包;
-document.getElementById('vFilterOptionB').textContent = ${coupleProfile.nameB} 的銀包;
-​const unforgivenA = grudges.filter(g => g.offender === 'A' && !g.forgiven);
-const unforgivenB = grudges.filter(g => g.offender === 'B' && !g.forgiven);
-​const pointsA = unforgivenA.reduce((sum, g) => sum + g.angerLevel * 10, 0);
-const pointsB = unforgivenB.reduce((sum, g) => sum + g.angerLevel * 10, 0);
-​document.getElementById('unforgivenCountA').textContent = unforgivenA.length;
-document.getElementById('unforgivenCountB').textContent = unforgivenB.length;
-document.getElementById('angerPointsA').textContent = ${pointsA} pt;
-document.getElementById('angerPointsB').textContent = ${pointsB} pt;
-​document.getElementById('angerBarA').style.width = ${Math.min(100, pointsA)}%;
-document.getElementById('angerBarB').style.width = ${Math.min(100, pointsB)}%;
-​const unusedVouchersA = vouchers.filter(v => v.holder === 'A' && !v.used).length;
-const unusedVouchersB = vouchers.filter(v => v.holder === 'B' && !v.used).length;
-document.getElementById('voucherCountA').textContent = ${unusedVouchersA} 張;
-document.getElementById('voucherCountB').textContent = ${unusedVouchersB} 張;
-​document.getElementById('totalGrudgeTabCount').textContent = unforgivenA.length + unforgivenB.length;
-document.getElementById('totalVoucherTabCount').textContent = unusedVouchersA + unusedVouchersB;
-​const totalPoints = pointsA + pointsB;
-const statusEl = document.getElementById('relationshipStatus');
-if (totalPoints === 0) {
-statusEl.textContent = '恩愛模範情侶 💖';
-statusEl.className = 'text-xs font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full';
-} else if (totalPoints <= 60) {
-statusEl.textContent = '小打小鬧情趣中 🤭';
-statusEl.className = 'text-xs font-bold text-amber-600 bg-amber-50 px-2.5 py-1 rounded-full';
-} else {
-statusEl.textContent = '一級警戒！快啲哄返 🚨';
-statusEl.className = 'text-xs font-bold text-rose-600 bg-rose-100 px-2.5 py-1 rounded-full animate-pulse';
-}
-​renderGrudges();
-renderVouchers();
-}
-​function renderGrudges() {
-const container = document.getElementById('grudgeList');
-const offenderFilter = document.getElementById('offenderFilter').value;
-​const filtered = grudges.filter(g => {
-if (currentFilter === 'unforgiven' && g.forgiven) return false;
-if (currentFilter === 'forgiven' && !g.forgiven) return false;
-if (offenderFilter !== 'all' && g.offender !== offenderFilter) return false;
-return true;
-});
-​if (filtered.length === 0) {
-container.innerHTML = <div class="glass-card rounded-3xl p-10 text-center space-y-2"> <div class="text-4xl">🕊️</div> <h3 class="font-bold text-slate-700">呢度乾乾淨淨，無仇無怨！</h3> <p class="text-xs text-slate-400">繼續保持甜蜜，記低新一筆小氣帳～</p> </div>;
-return;
-}
-​container.innerHTML = filtered.map(g => {
-const isA = g.offender === 'A';
-const offenderName = isA ? coupleProfile.nameA : coupleProfile.nameB;
-const offenderAvatar = isA ? coupleProfile.avatarA : coupleProfile.avatarB;
-const badgeColor = isA ? 'bg-rose-100 text-rose-700 border-rose-200' : 'bg-indigo-100 text-indigo-700 border-indigo-200';
-const fires = '🔥'.repeat(g.angerLevel);
-​return `
-<div class="glass-card rounded-3xl p-4 shadow-sm border transition hover:shadow-md ${g.forgiven ? 'opacity-75 bg-slate-50/70' : 'border-rose-100'}">
-<div class="flex items-start justify-between gap-2 mb-2.5">
-<div class="flex items-center gap-2 flex-wrap">
-<span class="px-2.5 py-1 rounded-xl text-xs font-black border flex items-center gap-1 ${badgeColor}">
-<span>{offenderAvatar}</span>
-<span>犯人：{offenderName}</span>
-</span>
-<span class="text-xs font-bold bg-slate-100 text-slate-600 px-2.5 py-1 rounded-xl">
-{g.category}
-</span>
-<span class="text-xs" title="怒氣值">{fires}</span>
-</div>
-<span class="text-[11px] text-slate-400 shrink-0">${g.date}</span>
-</div>
-​<p class="text-sm font-bold text-slate-800 mb-3 leading-relaxed ${g.forgiven ? 'line-through text-slate-400' : ''}">
-${g.title}
-</p>
-​<div class="bg-amber-50/80 border border-amber-200/70 rounded-2xl p-3 flex items-center justify-between gap-3">
-<div class="text-xs">
-<span class="text-amber-700 font-bold block mb-0.5">🎁 賠罪條件：</span>
-<span class="text-slate-700 font-medium">${g.compensation}</span>
-${g.forgiven && g.forgivenNote ? <span class="block mt-1 text-[11px] text-emerald-600 font-bold">✨ ${g.forgivenNote}</span> : ''}
-</div>
-​${g.forgiven ? <span class="shrink-0 px-3 py-1.5 rounded-xl bg-emerald-100 text-emerald-700 font-black text-xs flex items-center gap-1"> <i class="ph-fill ph-check-circle"></i> 已原諒💖 </span> : <button onclick="forgiveGrudge(${g.id})" class="shrink-0 px-3.5 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-bold text-xs shadow-sm shadow-emerald-200 transition active:scale-95 flex items-center gap-1"> <i class="ph-bold ph-heart"></i> 哄好銷案 </button>}
-</div>
-</div>
-`;
-}).join('');
-}
-​function renderVouchers() {
-const container = document.getElementById('voucherList');
-const holderFilter = document.getElementById('voucherHolderFilter').value;
-​const filtered = vouchers.filter(v => {
-if (currentVoucherFilter === 'unused' && v.used) return false;
-if (currentVoucherFilter === 'used' && !v.used) return false;
-if (holderFilter !== 'all' && v.holder !== holderFilter) return false;
-return true;
-});
-​if (filtered.length === 0) {
-container.innerHTML = <div class="glass-card rounded-3xl p-10 text-center space-y-2"> <div class="text-4xl">🎟️</div> <h3 class="font-bold text-slate-700">銀包入面暫時無呢類神券～</h3> <p class="text-xs text-slate-400">點擊上方「派發和好券」送張免死金牌俾另一半啦！</p> </div>;
-return;
-}
-​container.innerHTML = filtered.map(v => {
-const isHolderA = v.holder === 'A';
-const holderName = isHolderA ? coupleProfile.nameA : coupleProfile.nameB;
-const holderAvatar = isHolderA ? coupleProfile.avatarA : coupleProfile.avatarB;
-const issuerName = isHolderA ? coupleProfile.nameB : coupleProfile.nameA;
-​return `
-<div class="glass-card rounded-3xl p-4 shadow-sm border border-violet-200 relative overflow-hidden ${v.used ? 'opacity-70 bg-slate-50' : 'bg-gradient-to-br from-white to-violet-50/40'}">
-<div class="flex items-center justify-between gap-2 mb-2">
-<span class="px-2.5 py-1 rounded-xl text-xs font-black bg-violet-100 text-violet-700 border border-violet-200 flex items-center gap-1">
-<span>{holderAvatar}</span>
-<span>持有人：{holderName}</span>
-</span>
-<span class="text-[11px] text-slate-400">由 ${issuerName} 派發 · ${v.date}</span>
-</div>
-​<h4 class="text-base font-black text-slate-800 mb-1">{v.title}</h4>
-<p class="text-xs text-slate-600 mb-3 leading-relaxed">{v.desc}</p>
-​<div class="flex items-center justify-between pt-2.5 border-t border-dashed border-violet-200">
-${v.used ? <span class="text-xs font-bold text-slate-500">🧾 已使用：${v.usedFor || '日常甜蜜兌換'}</span> <span class="px-2.5 py-1 rounded-lg bg-slate-200 text-slate-600 text-xs font-bold">已失效</span> : <span class="text-[11px] font-bold text-violet-600">✨ 隨時可向對方出示兌換</span> <button onclick="redeemVoucherDirectly(${v.id})" class="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-violet-500 to-purple-600 text-white text-xs font-bold shadow-sm hover:opacity-95 transition active:scale-95"> 立即使用特權 ⚡ </button>}
-</div>
-</div>
-`;
-}).join('');
-}
-​function switchMainView(view) {
-currentMainView = view;
-const gSec = document.getElementById('grudgesSection');
-const vSec = document.getElementById('vouchersSection');
-const gBtn = document.getElementById('viewBtn-grudges');
-const vBtn = document.getElementById('viewBtn-vouchers');
-​if (view === 'grudges') {
-gSec.classList.remove('hidden');
-vSec.classList.add('hidden');
-gBtn.className = 'flex-1 py-2.5 rounded-xl font-black text-xs sm:text-sm bg-rose-500 text-white shadow-sm transition flex items-center justify-center gap-1.5';
-vBtn.className = 'flex-1 py-2.5 rounded-xl font-black text-xs sm:text-sm text-slate-600 hover:text-violet-600 transition flex items-center justify-center gap-1.5';
-} else {
-gSec.classList.add('hidden');
-vSec.classList.remove('hidden');
-vBtn.className = 'flex-1 py-2.5 rounded-xl font-black text-xs sm:text-sm bg-violet-600 text-white shadow-sm transition flex items-center justify-center gap-1.5';
-gBtn.className = 'flex-1 py-2.5 rounded-xl font-black text-xs sm:text-sm text-slate-600 hover:text-rose-500 transition flex items-center justify-center gap-1.5';
-}
-}
-​function setFilter(filter) {
-currentFilter = filter;
-['all', 'unforgiven', 'forgiven'].forEach(f => {
-const btn = document.getElementById(tab-${f});
-if (f === filter) btn.className = 'px-3.5 py-2 rounded-xl bg-rose-500 text-white transition';
-else btn.className = 'px-3.5 py-2 rounded-xl text-slate-600 hover:text-rose-500 transition';
-});
-renderGrudges();
-}
-​function setVoucherFilter(filter) {
-currentVoucherFilter = filter;
-['unused', 'used'].forEach(f => {
-const btn = document.getElementById(vtab-${f});
-if (f === filter) btn.className = 'px-3.5 py-2 rounded-xl bg-violet-600 text-white transition';
-else btn.className = 'px-3.5 py-2 rounded-xl text-slate-600 hover:text-violet-600 transition';
-});
-renderVouchers();
-}
-​function forgiveGrudge(id) {
-const item = grudges.find(g => g.id === id);
-if (!item) return;
-pendingForgiveGrudgeId = id;
-​const offenderName = item.offender === 'A' ? coupleProfile.nameA : coupleProfile.nameB;
-document.getElementById('forgiveGrudgeSummary').innerHTML = <div class="font-bold text-rose-700">犯人：${offenderName} (${item.category})</div> <div class="text-slate-700">${item.title}</div> <div class="text-amber-700 font-bold pt-1">原定賠罪：${item.compensation}</div>;
-​const availableVouchers = vouchers.filter(v => v.holder === item.offender && !v.used);
-const vContainer = document.getElementById('availableVouchersForGrudge');
-​if (availableVouchers.length > 0) {
-vContainer.innerHTML = <p class="text-xs font-bold text-violet-600 pt-1">🎟️ 或者動用 ${offenderName} 銀包入面嘅神券直接免死：</p> ${availableVouchers.map(v =>
-<button onclick="useVoucherToForgive(${v.id})" class="w-full p-3 rounded-2xl border-2 border-violet-200 bg-violet-50 hover:bg-violet-100 text-left flex items-center justify-between transition">
-<div>
-<div class="font-black text-xs text-violet-800">{v.title}</div>
-<div class="text-[11px] text-slate-500">{v.desc}</div>
-</div>
-<span class="shrink-0 px-2.5 py-1 rounded-xl bg-violet-600 text-white text-xs font-bold">用券銷案</span>
-</button>
-).join('')} ;
-} else {
-vContainer.innerHTML = <p class="text-[11px] text-slate-400 text-center pt-1">（${offenderName} 目前銀包無可用嘅原諒券）</p>;
-}
-document.getElementById('forgiveChoiceModal').classList.remove('hidden');
-}
-​function confirmNormalForgive() {
-const item = grudges.find(g => g.id === pendingForgiveGrudgeId);
-if (item) {
-item.forgiven = true;
-item.forgivenNote = '已乖乖履行賠罪條件哄返好！';
-closeForgiveChoiceModal();
-pushStateToCloud();
-showToast('💖', '成功銷案！');
-}
-}
-​function useVoucherToForgive(voucherId) {
-const item = grudges.find(g => g.id === pendingForgiveGrudgeId);
-const voucher = vouchers.find(v => v.id === voucherId);
-if (item && voucher) {
-item.forgiven = true;
-item.forgivenNote = 已動用「${voucher.title}」直接免死！;
-voucher.used = true;
-voucher.usedFor = 抵銷罪狀：${item.category};
-closeForgiveChoiceModal();
-pushStateToCloud();
-showToast('🎟️', 成功使用「${voucher.title}」銷案！);
-}
-}
-​function closeForgiveChoiceModal() { document.getElementById('forgiveChoiceModal').classList.add('hidden'); }
-function redeemVoucherDirectly(voucherId) {
-const voucher = vouchers.find(v => v.id === voucherId);
-if (!voucher) return;
-voucher.used = true;
-voucher.usedFor = '主動出示兌換';
-pushStateToCloud();
-showToast('✨', 已兌換「${voucher.title}」！);
-}
-​function selectVoucherPreset(title, desc) {
-document.getElementById('voucherTitle').value = title;
-document.getElementById('voucherDesc').value = desc;
-}
-​function submitVoucher(e) {
-e.preventDefault();
-const holder = document.querySelector('input[name="voucherReceiver"]:checked').value;
-const issuer = holder === 'A' ? 'B' : 'A';
-const title = document.getElementById('voucherTitle').value.trim();
-const desc = document.getElementById('voucherDesc').value.trim();
-if (!title) return;
-​vouchers.unshift({ id: Date.now(), holder, issuer, title, desc, date: '剛剛派發', used: false, usedFor: '' });
-closeIssueVoucherModal();
-switchMainView('vouchers');
-pushStateToCloud();
-showToast('🎁', '已成功派發神券！');
-}
-​function selectCategory(cat) {
-document.getElementById('selectedCategory').value = cat;
-document.querySelectorAll('.cat-btn').forEach(btn => {
-if (btn.textContent === cat) btn.className = 'cat-btn p-2.5 rounded-xl border border-rose-300 bg-rose-50 text-rose-600 font-bold transition';
-else btn.className = 'cat-btn p-2.5 rounded-xl border border-slate-200 text-slate-600 transition';
-});
-}
-​function updateAngerLabel(val) {
-const labels = { 1: '🔥 輕微扁嘴 (10 pt)', 2: '🔥🔥 有啲唔開心 (20 pt)', 3: '🔥🔥🔥 中度嬲豬 (30 pt)', 4: '🔥🔥🔥🔥 非常火滾 (40 pt)', 5: '🔥🔥🔥🔥🔥 核爆級大罪 (50 pt)' };
-document.getElementById('angerLevelLabel').textContent = labels[val];
-}
-​function setCompensation(text) { document.getElementById('grudgeCompensation').value = text; }
-​function submitGrudge(e) {
-e.preventDefault();
-const offender = document.querySelector('input[name="offender"]:checked').value;
-const category = document.getElementById('selectedCategory').value;
-const title = document.getElementById('grudgeTitle').value.trim();
-const angerLevel = parseInt(document.getElementById('angerLevel').value, 10);
-const compensation = document.getElementById('grudgeCompensation').value.trim();
-if (!title) return;
-​grudges.unshift({ id: Date.now(), offender, category, title, angerLevel, compensation, date: '剛剛', forgiven: false });
-document.getElementById('grudgeTitle').value = '';
-closeAddGrudgeModal();
-switchMainView('grudges');
-pushStateToCloud();
-showToast('💢', '新罪狀已記低並同步！');
-}
-​function spinApologyWheel() {
-const wheel = document.getElementById('wheelGraphic');
-const emojiEl = document.getElementById('wheelEmoji');
-const textEl = document.getElementById('wheelResultText');
-wheelRotation += 1080 + Math.floor(Math.random() * 360);
-wheel.style.transform = rotate(${wheelRotation}deg);
-emojiEl.textContent = '🌀';
-textEl.textContent = '命運轉動中...';
-setTimeout(() => {
-const picked = apologyWheelItems[Math.floor(Math.random() * apologyWheelItems.length)];
-emojiEl.textContent = picked.emoji;
-textEl.textContent = picked.text;
-}, 3000);
-}
-​function openAddGrudgeModal() { document.getElementById('addGrudgeModal').classList.remove('hidden'); }
-function closeAddGrudgeModal() { document.getElementById('addGrudgeModal').classList.add('hidden'); }
-function openIssueVoucherModal() { document.getElementById('issueVoucherModal').classList.remove('hidden'); }
-function closeIssueVoucherModal() { document.getElementById('issueVoucherModal').classList.add('hidden'); }
-function openWheelModal() { document.getElementById('wheelModal').classList.remove('hidden'); }
-function closeWheelModal() { document.getElementById('wheelModal').classList.add('hidden'); }
-function openSettingsModal() { document.getElementById('settingsModal').classList.remove('hidden'); }
-function closeSettingsModal() { document.getElementById('settingsModal').classList.add('hidden'); }
-function openRoomModal() { document.getElementById('roomModal').classList.remove('hidden'); }
-function closeRoomModal() { document.getElementById('roomModal').classList.add('hidden'); }
-function openInstallModal() { document.getElementById('installModal').classList.remove('hidden'); }
-function closeInstallModal() { document.getElementById('installModal').classList.add('hidden'); }
-​function joinCustomRoom() {
-const code = document.getElementById('roomCodeInput').value.trim();
-if (!code) return;
-currentRoomCode = code.toUpperCase();
-localStorage.setItem('couple_room_code', currentRoomCode);
-closeRoomModal();
-showToast('🔗', 已切換房號：${currentRoomCode});
-setTimeout(() => location.reload(), 800);
-}
-​function copyRoomCode() {
-const temp = document.createElement('input');
-temp.value = currentRoomCode;
-document.body.appendChild(temp);
-temp.select();
-document.execCommand('copy');
-document.body.removeChild(temp);
-showToast('📋', 已複製暗號：${currentRoomCode});
-}
-​function copyInviteMessage() {
-const base = window.location.origin + window.location.pathname;
-const link = ${base}?room=${encodeURIComponent(currentRoomCode)};
-const text = 💌 親愛嘅，呢個係我哋專屬嘅「情侶小氣簿」！點擊連結入嚟同步：\n${link}\n🔑 房間暗號：${currentRoomCode};
-const temp = document.createElement('textarea');
-temp.value = text;
-document.body.appendChild(temp);
-temp.select();
-document.execCommand('copy');
-document.body.removeChild(temp);
-showToast('💌', '已複製邀請連結！快啲發俾另一半啦～');
-}
-​function saveCoupleSettings() {
-coupleProfile.nameA = document.getElementById('inputNameA').value.trim() || '豬豬';
-coupleProfile.avatarA = document.getElementById('inputAvatarA').value;
-coupleProfile.nameB = document.getElementById('inputNameB').value.trim() || 'BB';
-coupleProfile.avatarB = document.getElementById('inputAvatarB').value;
-closeSettingsModal();
-pushStateToCloud();
-showToast('👩‍❤️‍👨', '設定已更新！');
-}
-​Object.assign(window, {
-openAddGrudgeModal, closeAddGrudgeModal, openIssueVoucherModal, closeIssueVoucherModal,
-openWheelModal, closeWheelModal, openSettingsModal, closeSettingsModal,
-openRoomModal, closeRoomModal, openInstallModal, closeInstallModal,
-setFilter, setVoucherFilter, switchMainView, forgiveGrudge, confirmNormalForgive,
-useVoucherToForgive, closeForgiveChoiceModal, redeemVoucherDirectly, selectVoucherPreset,
-submitVoucher, selectCategory, updateAngerLabel, setCompensation, submitGrudge,
-spinApologyWheel, saveCoupleSettings, joinCustomRoom, copyRoomCode, copyInviteMessage,
-saveCustomFirebaseConfig, renderGrudges, renderVouchers
-});
-​window.onload = () => { initApp(); };
-</script>
+        <section class="glass-card rounded-3xl p-5 shadow-lg shadow-rose-100/60 relative overflow-hidden">
+            <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-bold uppercase tracking-wider text-rose-500 bg-rose-50 px-3 py-1 rounded-full border border-rose-200">
+                    🔥 怒氣值對決看板
+                </span>
+                <span id="relationshipStatus" class="text-xs font-bold text-slate-500">天下太平 💕</span>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <!-- Partner A ScoreCard -->
+                <div class="bg-gradient-to-br from-rose-50 to-pink-50/50 rounded-2xl p-4 border border-rose-100 relative">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center gap-2">
+                            <span class="text-2xl" id="avatarA">🐻</span>
+                            <div>
+                                <h3 class="font-bold text-slate-800 text-sm" id="nameA">豬豬</h3>
+                                <p class="text-[11px] text-slate-400">待清罪狀</p>
+                            </div>
+                        </div>
+                        <span id="unforgivenCountA" class="text-2xl font-black text-rose-600">0</span>
+                    </div>
+                    <div class="w-full bg-white rounded-full h-2.5 overflow-hidden border border-rose-100">
+                        <div id="angerBarA" class="bg-gradient-to-r from-amber-400 to-rose-500 h-full transition-all duration-500" style="width: 30%"></div>
+                    </div>
+                    <div class="flex justify-between items-center mt-1.5 text-[11px] text-slate-500">
+                        <span>危險度</span>
+                        <span id="angerPointsA" class="font-bold text-rose-500">0 pt</span>
+                    </div>
+                    <div class="mt-2 pt-2 border-t border-rose-200/50 flex items-center justify-between text-[11px]">
+                        <span class="text-slate-500">🎟️ 可用原諒券</span>
+                        <span id="voucherCountA" class="font-black text-rose-600 bg-white px-2 py-0.5 rounded-full border border-rose-200">0 張</span>
+                    </div>
+                </div>
+
+                <!-- Partner B ScoreCard -->
+                <div class="bg-gradient-to-br from-indigo-50/70 to-purple-50/50 rounded-2xl p-4 border border-indigo-100 relative">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center gap-2">
+                            <span class="text-2xl" id="avatarB">🐰</span>
+                            <div>
+                                <h3 class="font-bold text-slate-800 text-sm" id="nameB">BB</h3>
+                                <p class="text-[11px] text-slate-400">待清罪狀</p>
+                            </div>
+                        </div>
+                        <span id="unforgivenCountB" class="text-2xl font-black text-indigo-600">0</span>
+                    </div>
+                    <div class="w-full bg-white rounded-full h-2.5 overflow-hidden border border-indigo-100">
+                        <div id="angerBarB" class="bg-gradient-to-r from-indigo-400 to-purple-500 h-full transition-all duration-500" style="width: 15%"></div>
+                    </div>
+                    <div class="flex justify-between items-center mt-1.5 text-[11px] text-slate-500">
+                        <span>危險度</span>
+                        <span id="angerPointsB" class="font-bold text-indigo-500">0 pt</span>
+                    </div>
+                    <div class="mt-2 pt-2 border-t border-indigo-200/50 flex items-center justify-between text-[11px]">
+                        <span class="text-slate-500">🎟️ 可用原諒券</span>
+                        <span id="voucherCountB" class="font-black text-indigo-600 bg-white px-2 py-0.5 rounded-full border border-indigo-200">0 張</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Action Buttons -->
+        <section class="grid grid-cols-3 gap-2.5">
+            <button onclick="openAddGrudgeModal()" class="bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white font-bold py-3.5 px-3 rounded-2xl shadow-lg shadow-rose-200 flex flex-col sm:flex-row items-center justify-center gap-1.5 transition active:scale-95 text-xs sm:text-sm">
+                <i class="ph-bold ph-plus-circle text-xl"></i>
+                <span>記一筆新仇</span>
+            </button>
+            <button onclick="openIssueVoucherModal()" class="bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white font-bold py-3.5 px-3 rounded-2xl shadow-lg shadow-purple-200 flex flex-col sm:flex-row items-center justify-center gap-1.5 transition active:scale-95 text-xs sm:text-sm">
+                <i class="ph-bold ph-ticket text-xl"></i>
+                <span>派發和好券</span>
+            </button>
+            <button onclick="openWheelModal()" class="bg-white hover:bg-amber-50 text-slate-700 font-bold py-3.5 px-3 rounded-2xl shadow-md shadow-rose-100/50 border border-amber-200 flex flex-col sm:flex-row items-center justify-center gap-1.5 transition active:scale-95 text-xs sm:text-sm">
+                <i class="ph-fill ph-spinner-ball text-xl text-amber-500"></i>
+                <span>賠罪大轉盤</span>
+            </button>
+        </section>
+
+        <!-- Main View Switcher: Grudges vs Vouchers -->
+        <div class="flex bg-white/80 p-1.5 rounded-2xl shadow-sm border border-rose-100">
+            <button onclick="switchMainView('grudges')" id="viewBtn-grudges" class="flex-1 py-2.5 rounded-xl font-black text-xs sm:text-sm bg-rose-500 text-white shadow-sm transition flex items-center justify-center gap-1.5">
+                <i class="ph-fill ph-BookOpenText"></i> 記仇罪狀簿 (<span id="totalGrudgeTabCount">0</span>)
+            </button>
+            <button onclick="switchMainView('vouchers')" id="viewBtn-vouchers" class="flex-1 py-2.5 rounded-xl font-black text-xs sm:text-sm text-slate-600 hover:text-violet-600 transition flex items-center justify-center gap-1.5">
+                <i class="ph-fill ph-ticket"></i> 和好 / 原諒券銀包 (<span id="totalVoucherTabCount">0</span>)
+            </button>
+        </div>
+
+        <!-- Grudges Section -->
+        <section id="grudgesSection" class="space-y-4">
+            <div class="flex items-center justify-between flex-wrap gap-2">
+                <div class="flex bg-white p-1 rounded-2xl shadow-sm border border-rose-100 text-xs font-bold">
+                    <button onclick="setFilter('all')" id="tab-all" class="px-3.5 py-2 rounded-xl bg-rose-500 text-white transition">全部記錄</button>
+                    <button onclick="setFilter('unforgiven')" id="tab-unforgiven" class="px-3.5 py-2 rounded-xl text-slate-600 hover:text-rose-500 transition">未原諒 😤</button>
+                    <button onclick="setFilter('forgiven')" id="tab-forgiven" class="px-3.5 py-2 rounded-xl text-slate-600 hover:text-rose-500 transition">已哄好 💖</button>
+                </div>
+
+                <select id="offenderFilter" onchange="renderGrudges()" class="bg-white border border-rose-100 rounded-xl px-3 py-2 text-xs font-bold text-slate-600 focus:outline-none focus:ring-2 focus:ring-rose-300">
+                    <option value="all">所有犯人</option>
+                    <option value="A" id="filterOptionA">只看 豬豬</option>
+                    <option value="B" id="filterOptionB">只看 BB</option>
+                </select>
+            </div>
+
+            <!-- Grudge List Container -->
+            <div id="grudgeList" class="space-y-3">
+                <!-- Populated by JS -->
+            </div>
+        </section>
+
+        <!-- Vouchers Wallet Section -->
+        <section id="vouchersSection" class="space-y-4 hidden">
+            <div class="glass-card rounded-3xl p-4 border border-violet-200 bg-gradient-to-r from-violet-50/80 to-pink-50/80 flex items-center justify-between gap-3">
+                <div class="space-y-0.5">
+                    <h3 class="text-sm font-black text-violet-900 flex items-center gap-1.5">
+                        <span>🎟️</span> 情侶專屬「和好 / 原諒券」
+                    </h3>
+                    <p class="text-xs text-slate-600">互相派發甜蜜特權券！犯事嗰陣仲可以拎張「原諒券」出嚟直接免死銷案～</p>
+                </div>
+                <button onclick="openIssueVoucherModal()" class="shrink-0 bg-violet-600 hover:bg-violet-700 text-white text-xs font-bold px-3.5 py-2.5 rounded-xl shadow-sm transition">
+                    + 派發新券
+                </button>
+            </div>
+
+            <div class="flex items-center justify-between">
+                <div class="flex bg-white p-1 rounded-2xl shadow-sm border border-violet-100 text-xs font-bold">
+                    <button onclick="setVoucherFilter('unused')" id="vtab-unused" class="px-3.5 py-2 rounded-xl bg-violet-600 text-white transition">可使用 ✨</button>
+                    <button onclick="setVoucherFilter('used')" id="vtab-used" class="px-3.5 py-2 rounded-xl text-slate-600 hover:text-violet-600 transition">已兌換 🧾</button>
+                </div>
+                <select id="voucherHolderFilter" onchange="renderVouchers()" class="bg-white border border-violet-100 rounded-xl px-3 py-2 text-xs font-bold text-slate-600 focus:outline-none">
+                    <option value="all">全部持有人</option>
+                    <option value="A" id="vFilterOptionA">豬豬 的銀包</option>
+                    <option value="B" id="vFilterOptionB">BB 的銀包</option>
+                </select>
+            </div>
+
+            <div id="voucherList" class="space-y-3">
+                <!-- Populated by JS -->
+            </div>
+        </section>
+
+    </main>
+
+    <div id="addGrudgeModal" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-rose-100 animate-pop max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-lg font-black text-slate-800 flex items-center gap-2">
+                    <span class="text-2xl">📝</span> 記低罪狀
+                </h2>
+                <button onclick="closeAddGrudgeModal()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center hover:bg-slate-200">
+                    <i class="ph-bold ph-x"></i>
+                </button>
+            </div>
+
+            <form id="grudgeForm" onsubmit="submitGrudge(event)" class="space-y-4">
+                <!-- Who did it -->
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 mb-2">邊個犯事？</label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <label class="cursor-pointer">
+                            <input type="radio" name="offender" value="A" checked class="peer hidden">
+                            <div class="p-3 rounded-2xl border-2 border-slate-100 peer-checked:border-rose-500 peer-checked:bg-rose-50 flex items-center gap-2 transition">
+                                <span class="text-2xl" id="formAvatarA">🐻</span>
+                                <span class="font-bold text-sm" id="formNameA">豬豬</span>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="offender" value="B" class="peer hidden">
+                            <div class="p-3 rounded-2xl border-2 border-slate-100 peer-checked:border-indigo-500 peer-checked:bg-indigo-50 flex items-center gap-2 transition">
+                                <span class="text-2xl" id="formAvatarB">🐰</span>
+                                <span class="font-bold text-sm" id="formNameB">BB</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Category -->
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 mb-2">罪名分類</label>
+                    <div class="grid grid-cols-3 gap-2 text-xs font-bold" id="categoryButtons">
+                        <button type="button" onclick="selectCategory('🍔 偷食嘢')" class="cat-btn p-2.5 rounded-xl border border-rose-200 bg-rose-50 text-rose-600 transition">🍔 偷食嘢</button>
+                        <button type="button" onclick="selectCategory('🐢 遲大到')" class="cat-btn p-2.5 rounded-xl border border-slate-200 text-slate-600 transition">🐢 遲大到</button>
+                        <button type="button" onclick="selectCategory('🎮 掛住打機')" class="cat-btn p-2.5 rounded-xl border border-slate-200 text-slate-600 transition">🎮 掛住打機</button>
+                        <button type="button" onclick="selectCategory('💬 敷衍覆機')" class="cat-btn p-2.5 rounded-xl border border-slate-200 text-slate-600 transition">💬 敷衍覆機</button>
+                        <button type="button" onclick="selectCategory('🧠 唔記得嘢')" class="cat-btn p-2.5 rounded-xl border border-slate-200 text-slate-600 transition">🧠 唔記得嘢</button>
+                        <button type="button" onclick="selectCategory('💢 講嘢寸嘴')" class="cat-btn p-2.5 rounded-xl border border-slate-200 text-slate-600 transition">💢 講嘢寸嘴</button>
+                    </div>
+                    <input type="hidden" id="selectedCategory" value="🍔 偷食嘢">
+                </div>
+
+                <!-- Event details -->
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 mb-1.5">事發經過（罪狀詳情）</label>
+                    <textarea id="grudgeTitle" required rows="2" placeholder="例如：食咗我留喺雪櫃最後一粒布甸，仲要唔認！" class="w-full rounded-2xl border border-slate-200 p-3 text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"></textarea>
+                </div>
+
+                <!-- Anger Level -->
+                <div>
+                    <div class="flex justify-between items-center mb-1.5">
+                        <label class="text-xs font-bold text-slate-500">嬲豬程度</label>
+                        <span id="angerLevelLabel" class="text-xs font-black text-rose-500">🔥🔥🔥 中度嬲豬 (30 pt)</span>
+                    </div>
+                    <input type="range" id="angerLevel" min="1" max="5" value="3" oninput="updateAngerLabel(this.value)" class="w-full accent-rose-500 cursor-pointer">
+                </div>
+
+                <!-- Demand / Compensation -->
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 mb-1.5">要求點樣賠罪 / 哄返？</label>
+                    <div class="flex gap-2 mb-2 overflow-x-auto pb-1 text-xs">
+                        <button type="button" onclick="setCompensation('請飲珍珠奶茶 🧋')" class="shrink-0 px-2.5 py-1 bg-amber-50 text-amber-700 rounded-lg border border-amber-200 font-medium">🧋 珍奶一杯</button>
+                        <button type="button" onclick="setCompensation('揼骨按摩 15 分鐘 💆‍♂️')" class="shrink-0 px-2.5 py-1 bg-amber-50 text-amber-700 rounded-lg border border-amber-200 font-medium">💆‍♂️ 按摩15分鐘</button>
+                        <button type="button" onclick="setCompensation('請食大餐 焼肉/火鍋 🥩')" class="shrink-0 px-2.5 py-1 bg-amber-50 text-amber-700 rounded-lg border border-amber-200 font-medium">🥩 請食大餐</button>
+                        <button type="button" onclick="setCompensation('誠懇道歉 + 錫返 10 啖 😘')" class="shrink-0 px-2.5 py-1 bg-amber-50 text-amber-700 rounded-lg border border-amber-200 font-medium">😘 錫返10啖</button>
+                    </div>
+                    <input type="text" id="grudgeCompensation" required value="請飲珍珠奶茶 🧋" class="w-full rounded-2xl border border-slate-200 p-3 text-sm focus:outline-none focus:ring-2 focus:ring-rose-400">
+                </div>
+
+                <button type="submit" class="w-full bg-gradient-to-r from-rose-500 to-pink-500 text-white font-bold py-3.5 rounded-2xl shadow-lg shadow-rose-200 hover:opacity-95 transition">
+                    蓋印記仇！💢
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="wheelModal" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-amber-100 animate-pop text-center">
+            <div class="flex items-center justify-between mb-2">
+                <h2 class="text-lg font-black text-slate-800 flex items-center gap-2">
+                    <span>🎡</span> 誠意賠罪大轉盤
+                </h2>
+                <button onclick="closeWheelModal()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center hover:bg-slate-200">
+                    <i class="ph-bold ph-x"></i>
+                </button>
+            </div>
+            <p class="text-xs text-slate-500 mb-5">唔知點哄返對方？即刻轉個賠罪任務啦！</p>
+
+            <div class="relative w-56 h-56 mx-auto mb-6 flex items-center justify-center">
+                <div id="wheelGraphic" class="w-full h-full rounded-full border-8 border-amber-200 shadow-inner flex items-center justify-center bg-gradient-to-tr from-rose-100 via-amber-50 to-pink-100 spin-wheel">
+                    <div class="text-center p-4">
+                        <span id="wheelEmoji" class="text-5xl block mb-2">🎁</span>
+                        <span id="wheelResultText" class="font-black text-sm text-slate-800 block">點擊下方開始抽籤</span>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="spinApologyWheel()" id="spinBtn" class="w-full bg-gradient-to-r from-amber-400 to-orange-400 hover:from-amber-500 hover:to-orange-500 text-white font-black py-3.5 rounded-2xl shadow-lg shadow-amber-200 transition active:scale-95">
+                即刻抽賠罪任務！🎲
+            </button>
+        </div>
+    </div>
+
+    <div id="settingsModal" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-sm w-full p-6 shadow-2xl border border-rose-100 animate-pop">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-lg font-black text-slate-800">👩‍❤️‍👨 情侶檔案設定</h2>
+                <button onclick="closeSettingsModal()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center">
+                    <i class="ph-bold ph-x"></i>
+                </button>
+            </div>
+            <div class="space-y-4">
+                <div>
+                    <label class="text-xs font-bold text-slate-500 block mb-1">伴侶 A 暱稱 & 代表圖案</label>
+                    <div class="flex gap-2">
+                        <select id="inputAvatarA" class="border border-slate-200 rounded-xl px-2 text-xl">
+                            <option value="🐻">🐻</option>
+                            <option value="🐶">🐶</option>
+                            <option value="🦊">🦊</option>
+                            <option value="🦁">🦁</option>
+                            <option value="👦">👦</option>
+                        </select>
+                        <input type="text" id="inputNameA" value="豬豬" class="w-full border border-slate-200 rounded-xl p-2.5 text-sm font-bold">
+                    </div>
+                </div>
+                <div>
+                    <label class="text-xs font-bold text-slate-500 block mb-1">伴侶 B 暱稱 & 代表圖案</label>
+                    <div class="flex gap-2">
+                        <select id="inputAvatarB" class="border border-slate-200 rounded-xl px-2 text-xl">
+                            <option value="🐰">🐰</option>
+                            <option value="🐱">🐱</option>
+                            <option value="🐼">🐼</option>
+                            <option value="🐹">🐹</option>
+                            <option value="👧">👧</option>
+                        </select>
+                        <input type="text" id="inputNameB" value="BB" class="w-full border border-slate-200 rounded-xl p-2.5 text-sm font-bold">
+                    </div>
+                </div>
+                <button onclick="saveCoupleSettings()" class="w-full bg-rose-500 text-white font-bold py-3 rounded-2xl shadow-md hover:bg-rose-600 transition">
+                    儲存設定 ✨
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Issue Voucher Modal -->
+    <div id="issueVoucherModal" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-violet-100 animate-pop max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-lg font-black text-slate-800 flex items-center gap-2">
+                    <span class="text-2xl">🎟️</span> 派發「和好 / 原諒券」
+                </h2>
+                <button onclick="closeIssueVoucherModal()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center hover:bg-slate-200">
+                    <i class="ph-bold ph-x"></i>
+                </button>
+            </div>
+
+            <form onsubmit="submitVoucher(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 mb-2">派俾邊個？（持有人）</label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <label class="cursor-pointer">
+                            <input type="radio" name="voucherReceiver" value="A" checked class="peer hidden">
+                            <div class="p-3 rounded-2xl border-2 border-slate-100 peer-checked:border-violet-500 peer-checked:bg-violet-50 flex items-center gap-2 transition">
+                                <span class="text-2xl" id="vFormAvatarA">🐻</span>
+                                <div>
+                                    <span class="font-bold text-sm block" id="vFormNameA">豬豬</span>
+                                    <span class="text-[10px] text-slate-400">送俾佢傍身</span>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="voucherReceiver" value="B" class="peer hidden">
+                            <div class="p-3 rounded-2xl border-2 border-slate-100 peer-checked:border-violet-500 peer-checked:bg-violet-50 flex items-center gap-2 transition">
+                                <span class="text-2xl" id="vFormAvatarB">🐰</span>
+                                <div>
+                                    <span class="font-bold text-sm block" id="vFormNameB">BB</span>
+                                    <span class="text-[10px] text-slate-400">送俾佢傍身</span>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 mb-2">選擇神券款式</label>
+                    <div class="grid grid-cols-2 gap-2 text-xs font-bold">
+                        <button type="button" onclick="selectVoucherPreset('🛡️ 免死金牌原諒券', '無論犯咩事，憑券即刻無條件原諒一次，不准翻舊帳！')" class="p-2.5 rounded-xl border border-violet-200 bg-violet-50 text-violet-700 text-left hover:bg-violet-100 transition">
+                            🛡️ 免死金牌原諒券
+                        </button>
+                        <button type="button" onclick="selectVoucherPreset('🤝 5分鐘破冰和好券', '冷戰期間使用，雙方必須喺 5 分鐘內抱抱和好！')" class="p-2.5 rounded-xl border border-slate-200 text-slate-700 text-left hover:bg-slate-50 transition">
+                            🤝 5分鐘破冰和好券
+                        </button>
+                        <button type="button" onclick="selectVoucherPreset('🤫 停止碎碎念靜音券', '使用後對方今日唔可以再就同一件事吟吟沉沉！')" class="p-2.5 rounded-xl border border-slate-200 text-slate-700 text-left hover:bg-slate-50 transition">
+                            🤫 停止碎碎念靜音券
+                        </button>
+                        <button type="button" onclick="selectVoucherPreset('👑 旨意特權券', '憑券可以要求對方無條件答應一個合理小要求！')" class="p-2.5 rounded-xl border border-slate-200 text-slate-700 text-left hover:bg-slate-50 transition">
+                            👑 旨意特權券
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 mb-1">神券名稱</label>
+                    <input type="text" id="voucherTitle" required value="🛡️ 免死金牌原諒券" class="w-full rounded-2xl border border-slate-200 p-3 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-violet-400">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 mb-1">使用效果 / 甜言蜜語備註</label>
+                    <textarea id="voucherDesc" required rows="2" class="w-full rounded-2xl border border-slate-200 p-3 text-sm focus:outline-none focus:ring-2 focus:ring-violet-400">無論犯咩事，憑券即刻無條件原諒一次，不准翻舊帳！</textarea>
+                </div>
+
+                <button type="submit" class="w-full bg-gradient-to-r from-violet-500 to-purple-600 text-white font-bold py-3.5 rounded-2xl shadow-lg shadow-violet-200 hover:opacity-95 transition">
+                    即刻派發神券！✨
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Forgive Choice Modal -->
+    <div id="forgiveChoiceModal" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-emerald-100 animate-pop space-y-4">
+            <div class="flex items-center justify-between">
+                <h2 class="text-lg font-black text-slate-800 flex items-center gap-2">
+                    <span>💖</span> 準備銷案原諒！
+                </h2>
+                <button onclick="closeForgiveChoiceModal()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center">
+                    <i class="ph-bold ph-x"></i>
+                </button>
+            </div>
+
+            <div id="forgiveGrudgeSummary" class="p-3.5 rounded-2xl bg-rose-50 border border-rose-100 text-xs space-y-1">
+                <!-- Populated by JS -->
+            </div>
+
+            <div class="space-y-2.5">
+                <p class="text-xs font-bold text-slate-500">選擇銷案方式：</p>
+                <button onclick="confirmNormalForgive()" class="w-full p-3.5 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-bold text-sm shadow-md flex items-center justify-between hover:opacity-95 transition">
+                    <span class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-lg"></i> 已經乖乖履行賠罪條件，直接原諒！</span>
+                    <i class="ph-bold ph-caret-right"></i>
+                </button>
+
+                <div id="availableVouchersForGrudge" class="space-y-2 pt-2">
+                    <!-- Populated if offender has unused vouchers -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cloud Sync Room Modal -->
+    <div id="roomModal" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-indigo-100 animate-pop space-y-4 max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between">
+                <h2 class="text-lg font-black text-slate-800 flex items-center gap-2">
+                    <i class="ph-fill ph-cloud-check text-indigo-500 text-2xl"></i> 雙人同步設定（1秒極速連線）
+                </h2>
+                <button onclick="closeRoomModal()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center">
+                    <i class="ph-bold ph-x"></i>
+                </button>
+            </div>
+
+            <div class="bg-indigo-50/80 border border-indigo-100 rounded-2xl p-4 space-y-2">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-indigo-900">目前房間暗號：</span>
+                    <span id="currentRoomDisplay" class="font-mono font-black text-sm bg-white px-3 py-1 rounded-xl text-indigo-600 border border-indigo-200">LOVE-520</span>
+                </div>
+                <p class="text-[11px] text-slate-600 leading-relaxed">
+                    只要你同另一半輸入<strong>相同嘅暗號</strong>，兩部機就會即時互通！如果想用你自己專屬嘅免費雲端，可以直接喺下面貼上 JSON。
+                </p>
+                <div class="text-[10px] text-slate-400 pt-1 flex items-center justify-between border-t border-indigo-100">
+                    <span>狀態：<span id="myUserIdDisplay" class="font-mono font-bold text-indigo-600">連線就緒</span></span>
+                    <button onclick="copyRoomCode()" class="text-indigo-600 font-bold hover:underline flex items-center gap-0.5">
+                        <i class="ph-bold ph-copy"></i> 複製暗號
+                    </button>
+                </div>
+            </div>
+
+            <div class="space-y-2">
+                <label class="block text-xs font-bold text-slate-600">切換房間暗號</label>
+                <div class="flex gap-2">
+                    <input type="text" id="roomCodeInput" placeholder="例如：LOVE-520" class="flex-1 border border-slate-200 rounded-2xl px-3.5 py-2.5 text-sm font-bold uppercase focus:outline-none focus:ring-2 focus:ring-indigo-400">
+                    <button onclick="joinCustomRoom()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2.5 rounded-2xl text-xs shadow-md transition shrink-0">
+                        切換 🔗
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-amber-50 border border-amber-200 rounded-2xl p-3 space-y-2">
+                <label class="block text-xs font-black text-amber-900">⚙️ 貼上你專屬嘅 Firebase JSON 金鑰：</label>
+                <textarea id="customFirebaseInput" rows="3" placeholder='{"apiKey": "AIzaSy...", "authDomain": "...", "projectId": "..."}' class="w-full font-mono text-[10px] p-2 rounded-xl border border-amber-300 bg-white focus:outline-none focus:ring-1 focus:ring-amber-400"></textarea>
+                <button onclick="saveCustomFirebaseConfig()" class="w-full py-2.5 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-bold rounded-xl shadow-sm text-xs transition">
+                    儲存並啟動專屬雲端 🚀
+                </button>
+            </div>
+
+            <div class="pt-2 border-t border-slate-100">
+                <button onclick="copyInviteMessage()" class="w-full py-3 rounded-2xl bg-gradient-to-r from-rose-500 to-pink-500 text-white font-bold text-xs shadow-md flex items-center justify-center gap-1.5 hover:opacity-95 transition">
+                    <i class="ph-bold ph-share-network text-base"></i> 一鍵複製邀請連結發俾另一半
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile App Install Guide Modal -->
+    <div id="installModal" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-amber-100 animate-pop space-y-4 max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between">
+                <h2 class="text-lg font-black text-slate-800 flex items-center gap-2">
+                    <span class="text-2xl">📱</span> 點樣裝落手機主畫面？
+                </h2>
+                <button onclick="closeInstallModal()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center">
+                    <i class="ph-bold ph-x"></i>
+                </button>
+            </div>
+
+            <div class="space-y-2.5 text-xs">
+                <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 space-y-1">
+                    <div class="font-black text-slate-800 flex items-center gap-1.5">
+                        <span>🍎</span> iPhone (iOS) 用 Safari 變身 App：
+                    </div>
+                    <p class="text-[11px] text-slate-600 leading-relaxed">
+                        1. 用 <strong>Safari</strong> 打開你個網址<br>
+                        2. 撳底部中間嘅「分享 <i class="ph-bold ph-export"></i>」按鈕<br>
+                        3. 向下碌揀 <strong>「加入主畫面 (Add to Home Screen)」</strong> 即可！
+                    </p>
+                </div>
+
+                <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 space-y-1">
+                    <div class="font-black text-slate-800 flex items-center gap-1.5">
+                        <span>🤖</span> Android 用 Chrome 變身 App：
+                    </div>
+                    <p class="text-[11px] text-slate-600 leading-relaxed">
+                        1. 用 <strong>Chrome</strong> 打開網址<br>
+                        2. 撳右上角「⋮」選單<br>
+                        3. 揀 <strong>「加到主畫面」或「安裝應用程式」</strong> 即可！
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        let coupleProfile = { nameA: '豬豬', avatarA: '🐻', nameB: 'BB', avatarB: '🐰' };
+        let grudges = [{ id: 1, offender: 'A', category: '🍔 偷食嘢', title: '食咗我留喺雪櫃最後一啖甜品！', angerLevel: 3, compensation: '請飲珍珠奶茶 🧋', date: '今日', forgiven: false, forgivenNote: '' }];
+        let vouchers = [
+            { id: 101, holder: 'A', issuer: 'B', title: '🛡️ 免死金牌原諒券', desc: '無論犯咩事，憑券即刻無條件原諒一次，不准翻舊帳！', date: '預設贈送', used: false, usedFor: '' },
+            { id: 102, holder: 'B', issuer: 'A', title: '🤝 5分鐘破冰和好券', desc: '冷戰期間使用，雙方必須喺 5 分鐘內抱抱和好！', date: '預設贈送', used: false, usedFor: '' }
+        ];
+
+        const apologyWheelItems = [
+            { emoji: '🧋', text: '即刻買杯手搖飲品孝敬對方' },
+            { emoji: '💆‍♂️', text: '人肉按摩揼骨 15 分鐘' },
+            { emoji: '😘', text: '抱住錫返 10 啖 + 講我愛你' },
+            { emoji: '🥩', text: '今個星期請食一頓好西大餐' },
+            { emoji: '🧹', text: '包辦今日所有家務/洗碗' },
+            { emoji: '🧧', text: '派封 $52 甜蜜氹返利是' },
+            { emoji: '🙇‍♂️', text: '錄一段 30 秒超肉麻道歉語音' }
+        ];
+
+        let currentFilter = 'all';
+        let currentVoucherFilter = 'unused';
+        let currentMainView = 'grudges';
+        let pendingForgiveGrudgeId = null;
+        let wheelRotation = 0;
+
+        let db = null;
+        let auth = null;
+        let unsubscribeRoom = null;
+        const urlParams = new URLSearchParams(window.location.search);
+        let currentRoomCode = (urlParams.get('room') || localStorage.getItem('couple_room_code') || 'LOVE-520').toUpperCase();
+
+        function loadFromLocalStorage() {
+            try {
+                const saved = localStorage.getItem(`couple_data_${currentRoomCode}`);
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    if (parsed.coupleProfile) coupleProfile = parsed.coupleProfile;
+                    if (Array.isArray(parsed.grudges)) grudges = parsed.grudges;
+                    if (Array.isArray(parsed.vouchers)) vouchers = parsed.vouchers;
+                }
+            } catch (e) { console.warn(e); }
+        }
+
+        function saveToLocalStorage() {
+            try {
+                localStorage.setItem('couple_room_code', currentRoomCode);
+                localStorage.setItem(`couple_data_${currentRoomCode}`, JSON.stringify({ coupleProfile, grudges, vouchers, updatedAt: Date.now() }));
+            } catch (e) { console.warn(e); }
+        }
+
+        function showToast(icon, text) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastIcon').textContent = icon;
+            document.getElementById('toastText').textContent = text;
+            toast.classList.remove('hidden');
+            setTimeout(() => toast.classList.add('hidden'), 3000);
+        }
+
+        async function initApp() {
+            loadFromLocalStorage();
+            updateUI();
+
+            const savedCustomConfig = localStorage.getItem('custom_firebase_config');
+            if (savedCustomConfig) {
+                document.getElementById('customFirebaseInput').value = savedCustomConfig;
+                try {
+                    const cfg = JSON.parse(savedCustomConfig);
+                    const app = initializeApp(cfg);
+                    auth = getAuth(app);
+                    db = getFirestore(app);
+                    await signInAnonymously(auth);
+                    document.getElementById('roomCodeBadge').textContent = `雲端連線中: ${currentRoomCode}`;
+                    document.getElementById('myUserIdDisplay').textContent = 'Firebase 專屬雲端運作中 ⚡';
+                    subscribeToCloudRoom(currentRoomCode);
+                    return;
+                } catch (e) {
+                    console.error('Firebase init error:', e);
+                    showToast('⚠️', '專屬 Firebase 雲端連線失敗，請檢查 JSON 格式');
+                }
+            }
+            document.getElementById('roomCodeBadge').textContent = `本機模式 (${currentRoomCode})`;
+        }
+
+        function subscribeToCloudRoom(roomCode) {
+            currentRoomCode = roomCode.toUpperCase();
+            localStorage.setItem('couple_room_code', currentRoomCode);
+            document.getElementById('currentRoomDisplay').textContent = currentRoomCode;
+            document.getElementById('roomCodeInput').value = currentRoomCode;
+
+            if (!db) return;
+            if (unsubscribeRoom) unsubscribeRoom();
+
+            const roomRef = doc(db, 'coupleRooms', currentRoomCode);
+            unsubscribeRoom = onSnapshot(roomRef, (snapshot) => {
+                if (snapshot.exists()) {
+                    const data = snapshot.data();
+                    if (data.coupleProfile) coupleProfile = data.coupleProfile;
+                    if (Array.isArray(data.grudges)) grudges = data.grudges;
+                    if (Array.isArray(data.vouchers)) vouchers = data.vouchers;
+                    saveToLocalStorage();
+                    updateUI();
+                } else {
+                    pushStateToCloud();
+                }
+            });
+        }
+
+        async function pushStateToCloud() {
+            saveToLocalStorage();
+            updateUI();
+            if (!db) return;
+            try {
+                const roomRef = doc(db, 'coupleRooms', currentRoomCode);
+                await setDoc(roomRef, { coupleProfile, grudges, vouchers, updatedAt: Date.now() });
+            } catch (e) {
+                console.error('Push error:', e);
+            }
+        }
+
+        function saveCustomFirebaseConfig() {
+            const raw = document.getElementById('customFirebaseInput').value.trim();
+            if (!raw) {
+                localStorage.removeItem('custom_firebase_config');
+                showToast('🧹', '已清除設定，重新載入...');
+                setTimeout(() => location.reload(), 1000);
+                return;
+            }
+            try {
+                JSON.parse(raw);
+                localStorage.setItem('custom_firebase_config', raw);
+                showToast('🚀', '已儲存金鑰！重啟連線中...');
+                setTimeout(() => location.reload(), 1000);
+            } catch (e) {
+                showToast('❌', 'JSON 格式錯誤，請確保使用雙引號標準格式');
+            }
+        }
+
+        function updateUI() {
+            document.getElementById('coupleNamesDisplay').textContent = `${coupleProfile.nameA} & ${coupleProfile.nameB}`;
+            document.getElementById('nameA').textContent = coupleProfile.nameA;
+            document.getElementById('avatarA').textContent = coupleProfile.avatarA;
+            document.getElementById('nameB').textContent = coupleProfile.nameB;
+            document.getElementById('avatarB').textContent = coupleProfile.avatarB;
+
+            document.getElementById('formNameA').textContent = coupleProfile.nameA;
+            document.getElementById('formAvatarA').textContent = coupleProfile.avatarA;
+            document.getElementById('formNameB').textContent = coupleProfile.nameB;
+            document.getElementById('formAvatarB').textContent = coupleProfile.avatarB;
+
+            document.getElementById('vFormNameA').textContent = coupleProfile.nameA;
+            document.getElementById('vFormAvatarA').textContent = coupleProfile.avatarA;
+            document.getElementById('vFormNameB').textContent = coupleProfile.nameB;
+            document.getElementById('vFormAvatarB').textContent = coupleProfile.avatarB;
+
+            document.getElementById('filterOptionA').textContent = `只看 ${coupleProfile.nameA}`;
+            document.getElementById('filterOptionB').textContent = `只看 ${coupleProfile.nameB}`;
+            document.getElementById('vFilterOptionA').textContent = `${coupleProfile.nameA} 的銀包`;
+            document.getElementById('vFilterOptionB').textContent = `${coupleProfile.nameB} 的銀包`;
+
+            const unforgivenA = grudges.filter(g => g.offender === 'A' && !g.forgiven);
+            const unforgivenB = grudges.filter(g => g.offender === 'B' && !g.forgiven);
+
+            const pointsA = unforgivenA.reduce((sum, g) => sum + g.angerLevel * 10, 0);
+            const pointsB = unforgivenB.reduce((sum, g) => sum + g.angerLevel * 10, 0);
+
+            document.getElementById('unforgivenCountA').textContent = unforgivenA.length;
+            document.getElementById('unforgivenCountB').textContent = unforgivenB.length;
+            document.getElementById('angerPointsA').textContent = `${pointsA} pt`;
+            document.getElementById('angerPointsB').textContent = `${pointsB} pt`;
+
+            document.getElementById('angerBarA').style.width = `${Math.min(100, pointsA)}%`;
+            document.getElementById('angerBarB').style.width = `${Math.min(100, pointsB)}%`;
+
+            const unusedVouchersA = vouchers.filter(v => v.holder === 'A' && !v.used).length;
+            const unusedVouchersB = vouchers.filter(v => v.holder === 'B' && !v.used).length;
+            document.getElementById('voucherCountA').textContent = `${unusedVouchersA} 張`;
+            document.getElementById('voucherCountB').textContent = `${unusedVouchersB} 張`;
+
+            document.getElementById('totalGrudgeTabCount').textContent = unforgivenA.length + unforgivenB.length;
+            document.getElementById('totalVoucherTabCount').textContent = unusedVouchersA + unusedVouchersB;
+
+            const totalPoints = pointsA + pointsB;
+            const statusEl = document.getElementById('relationshipStatus');
+            if (totalPoints === 0) {
+                statusEl.textContent = '恩愛模範情侶 💖';
+                statusEl.className = 'text-xs font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full';
+            } else if (totalPoints <= 60) {
+                statusEl.textContent = '小打小鬧情趣中 🤭';
+                statusEl.className = 'text-xs font-bold text-amber-600 bg-amber-50 px-2.5 py-1 rounded-full';
+            } else {
+                statusEl.textContent = '一級警戒！快啲哄返 🚨';
+                statusEl.className = 'text-xs font-bold text-rose-600 bg-rose-100 px-2.5 py-1 rounded-full animate-pulse';
+            }
+
+            renderGrudges();
+            renderVouchers();
+        }
+
+        function renderGrudges() {
+            const container = document.getElementById('grudgeList');
+            const offenderFilter = document.getElementById('offenderFilter').value;
+
+            const filtered = grudges.filter(g => {
+                if (currentFilter === 'unforgiven' && g.forgiven) return false;
+                if (currentFilter === 'forgiven' && !g.forgiven) return false;
+                if (offenderFilter !== 'all' && g.offender !== offenderFilter) return false;
+                return true;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="glass-card rounded-3xl p-10 text-center space-y-2">
+                        <div class="text-4xl">🕊️</div>
+                        <h3 class="font-bold text-slate-700">呢度乾乾淨淨，無仇無怨！</h3>
+                        <p class="text-xs text-slate-400">繼續保持甜蜜，記低新一筆小氣帳～</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = filtered.map(g => {
+                const isA = g.offender === 'A';
+                const offenderName = isA ? coupleProfile.nameA : coupleProfile.nameB;
+                const offenderAvatar = isA ? coupleProfile.avatarA : coupleProfile.avatarB;
+                const badgeColor = isA ? 'bg-rose-100 text-rose-700 border-rose-200' : 'bg-indigo-100 text-indigo-700 border-indigo-200';
+                const fires = '🔥'.repeat(g.angerLevel);
+
+                return `
+                    <div class="glass-card rounded-3xl p-4 shadow-sm border transition hover:shadow-md ${g.forgiven ? 'opacity-75 bg-slate-50/70' : 'border-rose-100'}">
+                        <div class="flex items-start justify-between gap-2 mb-2.5">
+                            <div class="flex items-center gap-2 flex-wrap">
+                                <span class="px-2.5 py-1 rounded-xl text-xs font-black border flex items-center gap-1 ${badgeColor}">
+                                    <span>${offenderAvatar}</span>
+                                    <span>犯人：${offenderName}</span>
+                                </span>
+                                <span class="text-xs font-bold bg-slate-100 text-slate-600 px-2.5 py-1 rounded-xl">
+                                    ${g.category}
+                                </span>
+                                <span class="text-xs" title="怒氣值">${fires}</span>
+                            </div>
+                            <span class="text-[11px] text-slate-400 shrink-0">${g.date}</span>
+                        </div>
+
+                        <p class="text-sm font-bold text-slate-800 mb-3 leading-relaxed ${g.forgiven ? 'line-through text-slate-400' : ''}">
+                            ${g.title}
+                        </p>
+
+                        <div class="bg-amber-50/80 border border-amber-200/70 rounded-2xl p-3 flex items-center justify-between gap-3">
+                            <div class="text-xs">
+                                <span class="text-amber-700 font-bold block mb-0.5">🎁 賠罪條件：</span>
+                                <span class="text-slate-700 font-medium">${g.compensation}</span>
+                                ${g.forgiven && g.forgivenNote ? `<span class="block mt-1 text-[11px] text-emerald-600 font-bold">✨ ${g.forgivenNote}</span>` : ''}
+                            </div>
+
+                            ${g.forgiven ? `
+                                <span class="shrink-0 px-3 py-1.5 rounded-xl bg-emerald-100 text-emerald-700 font-black text-xs flex items-center gap-1">
+                                    <i class="ph-fill ph-check-circle"></i> 已原諒💖
+                                </span>
+                            ` : `
+                                <button onclick="forgiveGrudge(${g.id})" class="shrink-0 px-3.5 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-bold text-xs shadow-sm shadow-emerald-200 transition active:scale-95 flex items-center gap-1">
+                                    <i class="ph-bold ph-heart"></i> 哄好銷案
+                                </button>
+                            `}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderVouchers() {
+            const container = document.getElementById('voucherList');
+            const holderFilter = document.getElementById('voucherHolderFilter').value;
+
+            const filtered = vouchers.filter(v => {
+                if (currentVoucherFilter === 'unused' && v.used) return false;
+                if (currentVoucherFilter === 'used' && !v.used) return false;
+                if (holderFilter !== 'all' && v.holder !== holderFilter) return false;
+                return true;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="glass-card rounded-3xl p-10 text-center space-y-2">
+                        <div class="text-4xl">🎟️</div>
+                        <h3 class="font-bold text-slate-700">銀包入面暫時無呢類神券～</h3>
+                        <p class="text-xs text-slate-400">點擊上方「派發和好券」送張免死金牌俾另一半啦！</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = filtered.map(v => {
+                const isHolderA = v.holder === 'A';
+                const holderName = isHolderA ? coupleProfile.nameA : coupleProfile.nameB;
+                const holderAvatar = isHolderA ? coupleProfile.avatarA : coupleProfile.avatarB;
+                const issuerName = isHolderA ? coupleProfile.nameB : coupleProfile.nameA;
+
+                return `
+                    <div class="glass-card rounded-3xl p-4 shadow-sm border border-violet-200 relative overflow-hidden ${v.used ? 'opacity-70 bg-slate-50' : 'bg-gradient-to-br from-white to-violet-50/40'}">
+                        <div class="flex items-center justify-between gap-2 mb-2">
+                            <span class="px-2.5 py-1 rounded-xl text-xs font-black bg-violet-100 text-violet-700 border border-violet-200 flex items-center gap-1">
+                                <span>${holderAvatar}</span>
+                                <span>持有人：${holderName}</span>
+                            </span>
+                            <span class="text-[11px] text-slate-400">由 ${issuerName} 派發 · ${v.date}</span>
+                        </div>
+
+                        <h4 class="text-base font-black text-slate-800 mb-1">${v.title}</h4>
+                        <p class="text-xs text-slate-600 mb-3 leading-relaxed">${v.desc}</p>
+
+                        <div class="flex items-center justify-between pt-2.5 border-t border-dashed border-violet-200">
+                            ${v.used ? `
+                                <span class="text-xs font-bold text-slate-500">🧾 已使用：${v.usedFor || '日常甜蜜兌換'}</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-slate-200 text-slate-600 text-xs font-bold">已失效</span>
+                            ` : `
+                                <span class="text-[11px] font-bold text-violet-600">✨ 隨時可向對方出示兌換</span>
+                                <button onclick="redeemVoucherDirectly(${v.id})" class="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-violet-500 to-purple-600 text-white text-xs font-bold shadow-sm hover:opacity-95 transition active:scale-95">
+                                    立即使用特權 ⚡
+                                </button>
+                            `}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function switchMainView(view) {
+            currentMainView = view;
+            const gSec = document.getElementById('grudgesSection');
+            const vSec = document.getElementById('vouchersSection');
+            const gBtn = document.getElementById('viewBtn-grudges');
+            const vBtn = document.getElementById('viewBtn-vouchers');
+
+            if (view === 'grudges') {
+                gSec.classList.remove('hidden');
+                vSec.classList.add('hidden');
+                gBtn.className = 'flex-1 py-2.5 rounded-xl font-black text-xs sm:text-sm bg-rose-500 text-white shadow-sm transition flex items-center justify-center gap-1.5';
+                vBtn.className = 'flex-1 py-2.5 rounded-xl font-black text-xs sm:text-sm text-slate-600 hover:text-violet-600 transition flex items-center justify-center gap-1.5';
+            } else {
+                gSec.classList.add('hidden');
+                vSec.classList.remove('hidden');
+                vBtn.className = 'flex-1 py-2.5 rounded-xl font-black text-xs sm:text-sm bg-violet-600 text-white shadow-sm transition flex items-center justify-center gap-1.5';
+                gBtn.className = 'flex-1 py-2.5 rounded-xl font-black text-xs sm:text-sm text-slate-600 hover:text-rose-500 transition flex items-center justify-center gap-1.5';
+            }
+        }
+
+        function setFilter(filter) {
+            currentFilter = filter;
+            ['all', 'unforgiven', 'forgiven'].forEach(f => {
+                const btn = document.getElementById(`tab-${f}`);
+                if (f === filter) btn.className = 'px-3.5 py-2 rounded-xl bg-rose-500 text-white transition';
+                else btn.className = 'px-3.5 py-2 rounded-xl text-slate-600 hover:text-rose-500 transition';
+            });
+            renderGrudges();
+        }
+
+        function setVoucherFilter(filter) {
+            currentVoucherFilter = filter;
+            ['unused', 'used'].forEach(f => {
+                const btn = document.getElementById(`vtab-${f}`);
+                if (f === filter) btn.className = 'px-3.5 py-2 rounded-xl bg-violet-600 text-white transition';
+                else btn.className = 'px-3.5 py-2 rounded-xl text-slate-600 hover:text-violet-600 transition';
+            });
+            renderVouchers();
+        }
+
+        function forgiveGrudge(id) {
+            const item = grudges.find(g => g.id === id);
+            if (!item) return;
+            pendingForgiveGrudgeId = id;
+
+            const offenderName = item.offender === 'A' ? coupleProfile.nameA : coupleProfile.nameB;
+            document.getElementById('forgiveGrudgeSummary').innerHTML = `
+                <div class="font-bold text-rose-700">犯人：${offenderName} (${item.category})</div>
+                <div class="text-slate-700">${item.title}</div>
+                <div class="text-amber-700 font-bold pt-1">原定賠罪：${item.compensation}</div>
+            `;
+
+            const availableVouchers = vouchers.filter(v => v.holder === item.offender && !v.used);
+            const vContainer = document.getElementById('availableVouchersForGrudge');
+
+            if (availableVouchers.length > 0) {
+                vContainer.innerHTML = `
+                    <p class="text-xs font-bold text-violet-600 pt-1">🎟️ 或者動用 ${offenderName} 銀包入面嘅神券直接免死：</p>
+                    ${availableVouchers.map(v => `
+                        <button onclick="useVoucherToForgive(${v.id})" class="w-full p-3 rounded-2xl border-2 border-violet-200 bg-violet-50 hover:bg-violet-100 text-left flex items-center justify-between transition">
+                            <div>
+                                <div class="font-black text-xs text-violet-800">${v.title}</div>
+                                <div class="text-[11px] text-slate-500">${v.desc}</div>
+                            </div>
+                            <span class="shrink-0 px-2.5 py-1 rounded-xl bg-violet-600 text-white text-xs font-bold">用券銷案</span>
+                        </button>
+                    `).join('')}
+                `;
+            } else {
+                vContainer.innerHTML = `<p class="text-[11px] text-slate-400 text-center pt-1">（${offenderName} 目前銀包無可用嘅原諒券）</p>`;
+            }
+            document.getElementById('forgiveChoiceModal').classList.remove('hidden');
+        }
+
+        function confirmNormalForgive() {
+            const item = grudges.find(g => g.id === pendingForgiveGrudgeId);
+            if (item) {
+                item.forgiven = true;
+                item.forgivenNote = '已乖乖履行賠罪條件哄返好！';
+                closeForgiveChoiceModal();
+                pushStateToCloud();
+                showToast('💖', '成功銷案！');
+            }
+        }
+
+        function useVoucherToForgive(voucherId) {
+            const item = grudges.find(g => g.id === pendingForgiveGrudgeId);
+            const voucher = vouchers.find(v => v.id === voucherId);
+            if (item && voucher) {
+                item.forgiven = true;
+                item.forgivenNote = `已動用「${voucher.title}」直接免死！`;
+                voucher.used = true;
+                voucher.usedFor = `抵銷罪狀：${item.category}`;
+                closeForgiveChoiceModal();
+                pushStateToCloud();
+                showToast('🎟️', `成功使用「${voucher.title}」銷案！`);
+            }
+        }
+
+        function closeForgiveChoiceModal() { document.getElementById('forgiveChoiceModal').classList.add('hidden'); }
+        function redeemVoucherDirectly(voucherId) {
+            const voucher = vouchers.find(v => v.id === voucherId);
+            if (!voucher) return;
+            voucher.used = true;
+            voucher.usedFor = '主動出示兌換';
+            pushStateToCloud();
+            showToast('✨', `已兌換「${voucher.title}」！`);
+        }
+
+        function selectVoucherPreset(title, desc) {
+            document.getElementById('voucherTitle').value = title;
+            document.getElementById('voucherDesc').value = desc;
+        }
+
+        function submitVoucher(e) {
+            e.preventDefault();
+            const holder = document.querySelector('input[name="voucherReceiver"]:checked').value;
+            const issuer = holder === 'A' ? 'B' : 'A';
+            const title = document.getElementById('voucherTitle').value.trim();
+            const desc = document.getElementById('voucherDesc').value.trim();
+            if (!title) return;
+
+            vouchers.unshift({ id: Date.now(), holder, issuer, title, desc, date: '剛剛派發', used: false, usedFor: '' });
+            closeIssueVoucherModal();
+            switchMainView('vouchers');
+            pushStateToCloud();
+            showToast('🎁', '已成功派發神券！');
+        }
+
+        function selectCategory(cat) {
+            document.getElementById('selectedCategory').value = cat;
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                if (btn.textContent === cat) btn.className = 'cat-btn p-2.5 rounded-xl border border-rose-300 bg-rose-50 text-rose-600 font-bold transition';
+                else btn.className = 'cat-btn p-2.5 rounded-xl border border-slate-200 text-slate-600 transition';
+            });
+        }
+
+        function updateAngerLabel(val) {
+            const labels = { 1: '🔥 輕微扁嘴 (10 pt)', 2: '🔥🔥 有啲唔開心 (20 pt)', 3: '🔥🔥🔥 中度嬲豬 (30 pt)', 4: '🔥🔥🔥🔥 非常火滾 (40 pt)', 5: '🔥🔥🔥🔥🔥 核爆級大罪 (50 pt)' };
+            document.getElementById('angerLevelLabel').textContent = labels[val];
+        }
+
+        function setCompensation(text) { document.getElementById('grudgeCompensation').value = text; }
+
+        function submitGrudge(e) {
+            e.preventDefault();
+            const offender = document.querySelector('input[name="offender"]:checked').value;
+            const category = document.getElementById('selectedCategory').value;
+            const title = document.getElementById('grudgeTitle').value.trim();
+            const angerLevel = parseInt(document.getElementById('angerLevel').value, 10);
+            const compensation = document.getElementById('grudgeCompensation').value.trim();
+            if (!title) return;
+
+            grudges.unshift({ id: Date.now(), offender, category, title, angerLevel, compensation, date: '剛剛', forgiven: false });
+            document.getElementById('grudgeTitle').value = '';
+            closeAddGrudgeModal();
+            switchMainView('grudges');
+            pushStateToCloud();
+            showToast('💢', '新罪狀已記低並同步！');
+        }
+
+        function spinApologyWheel() {
+            const wheel = document.getElementById('wheelGraphic');
+            const emojiEl = document.getElementById('wheelEmoji');
+            const textEl = document.getElementById('wheelResultText');
+            wheelRotation += 1080 + Math.floor(Math.random() * 360);
+            wheel.style.transform = `rotate(${wheelRotation}deg)`;
+            emojiEl.textContent = '🌀';
+            textEl.textContent = '命運轉動中...';
+            setTimeout(() => {
+                const picked = apologyWheelItems[Math.floor(Math.random() * apologyWheelItems.length)];
+                emojiEl.textContent = picked.emoji;
+                textEl.textContent = picked.text;
+            }, 3000);
+        }
+
+        function openAddGrudgeModal() { document.getElementById('addGrudgeModal').classList.remove('hidden'); }
+        function closeAddGrudgeModal() { document.getElementById('addGrudgeModal').classList.add('hidden'); }
+        function openIssueVoucherModal() { document.getElementById('issueVoucherModal').classList.remove('hidden'); }
+        function closeIssueVoucherModal() { document.getElementById('issueVoucherModal').classList.add('hidden'); }
+        function openWheelModal() { document.getElementById('wheelModal').classList.remove('hidden'); }
+        function closeWheelModal() { document.getElementById('wheelModal').classList.add('hidden'); }
+        function openSettingsModal() { document.getElementById('settingsModal').classList.remove('hidden'); }
+        function closeSettingsModal() { document.getElementById('settingsModal').classList.add('hidden'); }
+        function openRoomModal() { document.getElementById('roomModal').classList.remove('hidden'); }
+        function closeRoomModal() { document.getElementById('roomModal').classList.add('hidden'); }
+        function openInstallModal() { document.getElementById('installModal').classList.remove('hidden'); }
+        function closeInstallModal() { document.getElementById('installModal').classList.add('hidden'); }
+
+        function joinCustomRoom() {
+            const code = document.getElementById('roomCodeInput').value.trim();
+            if (!code) return;
+            currentRoomCode = code.toUpperCase();
+            localStorage.setItem('couple_room_code', currentRoomCode);
+            closeRoomModal();
+            showToast('🔗', `已切換房號：${currentRoomCode}`);
+            setTimeout(() => location.reload(), 800);
+        }
+
+        function copyRoomCode() {
+            const temp = document.createElement('input');
+            temp.value = currentRoomCode;
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand('copy');
+            document.body.removeChild(temp);
+            showToast('📋', `已複製暗號：${currentRoomCode}`);
+        }
+
+        function copyInviteMessage() {
+            const base = window.location.origin + window.location.pathname;
+            const link = `${base}?room=${encodeURIComponent(currentRoomCode)}`;
+            const text = `💌 親愛嘅，呢個係我哋專屬嘅「情侶小氣簿」！點擊連結入嚟同步：\n${link}\n🔑 房間暗號：${currentRoomCode}`;
+            const temp = document.createElement('textarea');
+            temp.value = text;
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand('copy');
+            document.body.removeChild(temp);
+            showToast('💌', '已複製邀請連結！快啲發俾另一半啦～');
+        }
+
+        function saveCoupleSettings() {
+            coupleProfile.nameA = document.getElementById('inputNameA').value.trim() || '豬豬';
+            coupleProfile.avatarA = document.getElementById('inputAvatarA').value;
+            coupleProfile.nameB = document.getElementById('inputNameB').value.trim() || 'BB';
+            coupleProfile.avatarB = document.getElementById('inputAvatarB').value;
+            closeSettingsModal();
+            pushStateToCloud();
+            showToast('👩‍❤️‍👨', '設定已更新！');
+        }
+
+        Object.assign(window, {
+            openAddGrudgeModal, closeAddGrudgeModal, openIssueVoucherModal, closeIssueVoucherModal,
+            openWheelModal, closeWheelModal, openSettingsModal, closeSettingsModal,
+            openRoomModal, closeRoomModal, openInstallModal, closeInstallModal,
+            setFilter, setVoucherFilter, switchMainView, forgiveGrudge, confirmNormalForgive,
+            useVoucherToForgive, closeForgiveChoiceModal, redeemVoucherDirectly, selectVoucherPreset,
+            submitVoucher, selectCategory, updateAngerLabel, setCompensation, submitGrudge,
+            spinApologyWheel, saveCoupleSettings, joinCustomRoom, copyRoomCode, copyInviteMessage,
+            saveCustomFirebaseConfig, renderGrudges, renderVouchers
+        });
+
+        window.onload = () => { initApp(); };
+    </script>
 </body>
 </html>
+```
